@@ -1,0 +1,131 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    // "height": 24,
+    "modules-left": [
+		"clock",
+        "sway/window",
+		"sway/mode",
+		"custom/media"
+    ],
+    "modules-center": [
+		"sway/workspaces",
+		"sway/scratchpad"
+    ],
+    "modules-right": [
+        "tray",
+		"cpu",
+		"temperature",
+        "memory",
+        "network",
+        "pulseaudio",
+		"idle_inhibitor",
+		"backlight",
+        "battery",
+        "custom/power"
+    ],
+	"sway/mode": { 
+		"format": "<span style=\"italic\">{}</span>"
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {}%",
+        "max-length": 10
+    },
+	"cpu": {
+        "format": " {usage}%",
+	},
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "format-alt": "  {:%a, %d %b %Y}",
+        "format": "  {:%I:%M %p}"
+    },
+	"temperature": {
+		"critical-threshold": 80,
+		"format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+	},
+	"backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+	},
+    "network": {
+        "format-wifi" : "{icon}",
+        "format-icons": ["󰤯","󰤟","󰤢","󰤥","󰤨"],
+        "format-ethernet": "󰀂",
+		"format-alt" : "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected" : "󰖪",
+	"tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes} ({signalStrength}%)",
+        "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+	"tooltip-format-disconnected": "Disconnected",
+	"interval": 5,
+	"nospacing": 1,
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "󰂰",
+        "nospacing": 1,
+        "tooltip-format": "Volume : {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "",
+            "default": ["󰖀","󰕾",""]
+        },
+        "on-click": "pamixer -t",
+        "scroll-step": 1,
+		"on-click": "pavucontrol"
+    },
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": {
+            "charging": [
+                "󰢜",
+                "󰂆",
+                "󰂇",
+                "󰂈",
+                "󰢝",
+                "󰂉",
+                "󰢞",
+                "󰂊",
+                "󰂋",
+                "󰂅"
+            ],
+            "default": [
+                "󰁺",
+                "󰁻",
+                "󰁼",
+                "󰁽",
+                "󰁾",
+                "󰁿",
+                "󰂀",
+                "󰂁",
+                "󰂂",
+                "󰁹"
+            ]
+        },
+        "format-full": "Charged ",
+        "interval": 5,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+    "custom/power": {
+        "format": "󰤆",
+        "tooltip": false,
+        "on-click": "poweroff"
+    }
+}

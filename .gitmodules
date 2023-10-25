@@ -1,0 +1,9 @@
+[submodule ".vim/bundle/auto-pairs"]
+	path = .vim/bundle/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs.git
+[submodule ".vim/bundle/everforest"]
+	path = .vim/bundle/everforest
+	url = https://github.com/sainnhe/everforest
+[submodule ".vim/bundle/quick-scope"]
+	path = .vim/bundle/quick-scope
+	url = https://github.com/unblevable/quick-scope

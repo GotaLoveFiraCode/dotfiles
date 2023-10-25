@@ -1,0 +1,148 @@
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+
+
+execute pathogen#infect()
+
+" # List of Plugins
+"
+" - auto-pairs
+"   + autocomplete brackets et al
+" - everforest
+" - quick-scope
+"   + show targets for `t` & `f`
+" - supertab
+" - targets.vim
+"   + adds more targets
+" - undotree
+"   + undo-history
+" - airline
+"   + tabs and bufferline
+" - commentary
+"   + gcc = commet line
+"   + gc<obj> = comment object
+" - easy-align
+" - endwise
+" - surround
+"   + cs
+"   + ys
+"   + ds
+
+" Cursor settings
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
+"" AIRLINE:
+let g:airline#extensions#tabline#enabled = 1
+
+" EVERFOREST:
+let g:everforest_enable_italic          = 1
+let g:everforest_background             = 'hard'
+let g:everforest_better_performance     = 1
+set background=dark
+set termguicolors
+colorscheme everforest
+
+" UNDOTREE:
+let g:undotree_SetFocusWhenToggle = 1
+nnoremap <F5> :UndotreeToggle<CR>
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+
+" EASYALIGN:
+xmap ga <PLUG>(EasyAlign)
+nmap ga <PLUG>(EasyAlign)
+
+" YOINK:
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+" Also replace the default gp with yoink paste so we can toggle paste in this case too
+nmap gp <plug>(YoinkPaste_gp)
+nmap gP <plug>(YoinkPaste_gP)
+
+
+" Keybinds
+
+let mapleader=' '
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+" nnoremap <C-n> :vsp<CR>
+" nnoremap <C-p> :sp<CR>
+
+nnoremap <C-I> :bn<CR>
+
+nnoremap <C-q> :Sayonara<CR>
+nnoremap <C-e> :Sayonara!<CR>
+nnoremap <C-s> :w<CR>
+nnoremap <C-w> :w<CR>:Sayonara<CR>
+
+vnoremap J :m '>+1<cr>gv'
+vnoremap K :m '>-2<CR>gv'
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzvzz
+nnoremap N Nzvzz
+nnoremap { {zz
+nnoremap } }zz
+
+nnoremap <leader>n :Ex<CR>
+
+nnoremap % %zvzz
+nnoremap 0 ^
+
+set nu " numbers
+set rnu " nums relative to your pos
+set scs " smart case
+set si " smart indent
+set ts=8 " 8 char tabs
+set noet " tabs, not spcs
+set spr
+set noswapfile
+set bri
+set undofile
+set nowrap
+set cul
+set mouse=a
+set title
+set path+=**
+set sc
+set sm
+set wildmode=longest,full
+set list
+set completeopt=menu,preview,longest
+set clipboard^=unnamed,unnamedplus

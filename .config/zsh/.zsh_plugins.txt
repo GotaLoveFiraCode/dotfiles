@@ -1,0 +1,23 @@
+# History
+atuinsh/atuin                      branch:main
+
+# Startup
+babasbot/auto-fortune-cowsay-zsh
+
+MichaelAquilina/zsh-auto-notify    kind:defer
+hlissner/zsh-autopair              kind:defer
+arzzen/calc.plugin.zsh             kind:defer
+djui/alias-tips                    kind:defer
+leophys/zsh-plugin-fzf-finder      kind:defer
+davidde/git                        kind:defer
+momo-lab/zsh-replace-multiple-dots kind:defer
+clarketm/zsh-completions           kind:defer
+
+# Theme
+sindresorhus/pure                  kind:fpath
+
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+
+# Always have at end
+zsh-users/zsh-syntax-highlighting
