@@ -23,13 +23,10 @@ vim.opt.udf = true
 vim.opt.pa:append "**"
 -- first complete longest possible string, i.e. bash/zsh style
 -- then open wildmenu and cycle through matches
-vim.opt.wim = { 'longest', 'full'  } 
+vim.opt.wim = { 'longest', 'full'  }
 vim.opt.wmnu = true
 -- horizontal menu
 vim.opt.wildoptions:remove 'pum'
 vim.opt.wrap = false
 vim.opt.bg = 'dark'
-vim.opt.completeopt = { 'longest', 'menu' }
-
-vim.cmd.colorscheme('slate')
-
+vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }

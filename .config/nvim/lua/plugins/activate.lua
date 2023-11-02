@@ -7,9 +7,5 @@ return {
 			desc = "Plugins",
 		},
 	},
-	dependencies = {
-		{ 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = {
-			'nvim-lua/plenary.nvim'
-		}}
-	}
+	dependencies = {'nvim-telescope/telescope.nvim'}
 }

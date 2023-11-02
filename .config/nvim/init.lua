@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require 'lazy'.setup("plugins", {
+	defaults = { lazy = true },
 	install = { colorscheme = { 'catpuccin', 'slate' } },
 	checker = { enabled = true, concurrency = 1 },
 	performance = {
@@ -31,11 +32,10 @@ require 'lazy'.setup("plugins", {
 				"tutor",
 				"zipPlugin",
 				"tohtml",
-				-- "netrwPlugin"
+				"netrwPlugin"
 			}
 		}
 	}
 })
 
 require 'core'
-

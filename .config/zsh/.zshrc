@@ -55,8 +55,27 @@ alias tags="ctags -R *"
 alias tov='cd ~/.config/nvim/'
 alias ton='cd ~/.config/nvim-nightly/'
 alias ls="exa --icons"
-alias lt="exa --icons --tree --level=2"
-alias lr="exa --icons -lhF --git --level=2 -R"
+
+lt() {
+	if [[ $1 == '--help' ]]; then
+		exa --help | grep "level DEPTH"
+	elif [[ $1 ]]; then
+		exa --icons --tree --level=$1
+	elif [[ ! $1 ]]; then
+		exa --icons --tree --level=2
+	fi
+}
+
+lr() {
+	if [[ $1 == '--help' ]]; then
+		exa --help | grep "level DEPTH"
+	elif [[ $1 ]]; then
+		exa --icons -lhF --git --level=$1 -R
+	elif [[ ! $1 ]]; then
+		exa --icons -lhF --git --level=2 -R
+	fi
+}
+
 alias ll="exa --icons -lhF --git"
 alias _=sudo
 alias ..="cd .."

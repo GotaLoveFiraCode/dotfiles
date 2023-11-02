@@ -28,7 +28,8 @@ return {
 			['N']     = { 'Nzzzv', 'Previous result' },
 			['{']     = { '{zzzv', 'Up paragraph' },
 			['}']     = { '}zzzv', 'Down paragraph' },
-			['<C-l>'] = { vim.cmd.noh, 'Clear Highlighting' }
+			['<C-l>'] = { vim.cmd.noh, 'Clear Highlighting' },
+			['<C-p>'] = { '"+p', 'Paste from system clipboard' }
 		})
 	end
 }

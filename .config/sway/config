@@ -226,6 +226,18 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+mode "open" {
+	bindsym f exec firefox
+	bindsym t exec teams-for-linux
+	bindsym s exec steam
+	bindsym b exec brave
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+u mode "default"
+}
+bindsym $mod+u mode "open"
+
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
 #  - /etc/sway/config.d

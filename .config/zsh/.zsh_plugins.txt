@@ -10,13 +10,12 @@ arzzen/calc.plugin.zsh             kind:defer
 djui/alias-tips                    kind:defer
 leophys/zsh-plugin-fzf-finder      kind:defer
 davidde/git                        kind:defer
-momo-lab/zsh-replace-multiple-dots kind:defer
+knu/zsh-manydots-magic             kind:defer
 clarketm/zsh-completions           kind:defer
 
 # Theme
 sindresorhus/pure                  kind:fpath
 
-zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
 # Always have at end
