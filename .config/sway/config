@@ -9,7 +9,7 @@ blur_xray enable
 blur_passes 4
 blur_radius 2
 
-# corner_radius 6
+corner_radius 6
 
 shadows enable
 shadows_on_csd enable
@@ -267,9 +267,9 @@ client.focused          #a3be8c #a3be8c #2e3440 #bf616a
 client.focused_inactive #3b4252 #3b4252 #e5e9f0 #8fbcbb
 client.unfocused        #2e3440 #2e3440 #d8dee9 #81a1c1
 client.urgent           #bf616a #bf616a #a3be8c #5e81ac
-gaps inner 4
-gaps outer 9
-default_border pixel 4
+gaps inner 8
+gaps outer 5
+default_border pixel 3
 default_floating_border pixel 4
 # exec_always --no-startup-id workstyle &> /tmp/workstyle.log
 bindsym $mod+x exec "swaylock -e -F -f -k -l --font Comfortaa"
@@ -286,10 +286,17 @@ input type:keyboard {
 input type:touchpad {
 	dwt enabled
 	middle_emulation enabled
+        tap enabled
+        accel_profile "flat"
+        pointer_accel 0.2
+        scroll_factor 0.3
 }
 
 bindsym $mod+c exec "imv ~/Documents/QWERTZ.jpg"
 bindsym $mod+l exec "libreoffice"
+
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
 
 font Comfortaa 10
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

@@ -30,3 +30,34 @@ vim.opt.wildoptions:remove 'pum'
 vim.opt.wrap = false
 vim.opt.bg = 'dark'
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
+
+vim.opt.tags = './tags;$HOME'
+vim.opt.title = true
+
+vim.opt.foldexpr = 'marker'
+vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:⏵]]
+
+-- vim.cmd [[
+-- function! MyFoldText()
+
+-- let line = getline(v:foldstart)
+-- let folded_line_num = v:foldend - v:foldstart
+-- let line_text = substitute(line, '^"{\+', '', 'g')
+-- let fillcharcount = &textwidth - len(line_text) - len(folded_line_num)
+
+-- return '+'. repeat('—', 4) . line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' L)'
+
+-- endfunction
+
+-- set foldtext=MyFoldText()
+-- ]]
+
+vim.keymap.set('n', '<leader>o', function()
+	local foldclosed = vim.fn.foldclosed(vim.fn.line("."))
+	if foldclosed == -1 then
+		vim.cmd([[silent! normal! zfip]])
+	else
+		vim.cmd("silent! normal! zo")
+	end
+end)
+
