@@ -1,10 +1,10 @@
-# Lines configured by zsh-newuser-install
+# Lines configured by zsh-newuser-install: {{{
 setopt beep extendedglob nomatch
 unsetopt autocd notify
 bindkey -v
-# End of lines configured by zsh-newuser-install
+# End of lines configured by zsh-newuser-install. }}}
 
-# The following lines were added by compinstall
+# The following lines were added by compinstall: {{{
 
 zstyle ':completion:*' auto-description '==> specify: %d'
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -31,11 +31,11 @@ zstyle :compinstall filename '/home/ltr/.zshrc'
 
 autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-# End of lines added by compinstall
+# End of lines added by compinstall. }}}
 
 # Lines added by LTR
 
-# Antidote
+# Antidote {{{
 
 if [ ! -d "${ZDOTDIR:-~}/.antidote" ]; then
 	echo ":: Git needs to be installed"
@@ -45,14 +45,13 @@ fi
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
+# }}}
+
 # Normal settings
 
 export FZF_DEFAULT_OPTS='-m --height ~30% --reverse --border --margin 0,1 --info right --separator = --scrollbar ↓'
 
-alias v=nvim
-alias ls="exa --icons"
-
-# Dynamic depth
+# Dynamic depth {{{
 lt() {
 	if [[ $1 == '--help' ]]; then
 		exa --help | grep "level DEPTH"
@@ -71,18 +70,22 @@ lr() {
 	elif [[ ! $1 ]]; then
 		exa --icons -lhF --git --level=2 -R
 	fi
-}
+} # }}}
 
+# Aliases {{{
+alias v=nvim
+alias ls="exa --icons"
 alias ll="exa --icons -lhF --git"
 alias _=sudo
 alias ..="cd .."
 alias md="mkdir -p"
 alias config='/usr/bin/git --git-dir=/home/ltr/.cfg/ --work-tree=/home/ltr'
 alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
+# }}}
 
 # Extra shell apps
 
-# FZF, C-t
+# FZF, C-t {{{
 if [[ $- == *i* ]]; then
 
 	# CTRL-T - Paste the selected file path(s) into the command line
@@ -115,13 +118,13 @@ if [[ $- == *i* ]]; then
 	zle     -N   fzf-file-widget
 	bindkey '^T' fzf-file-widget
 
-fi
+fi # }}}
 
 eval "$(zoxide init zsh --cmd t)"
 
 autoload -Uz promptinit && promptinit && prompt pure
 
-# nnn
+# nnn {{{
 # n ()
 # {
 #     # Block nesting of nnn in subshells
@@ -151,4 +154,4 @@ autoload -Uz promptinit && promptinit && prompt pure
 #         . "$NNN_TMPFILE"
 #         rm -f "$NNN_TMPFILE" > /dev/null
 #     }
-# }
+# } }}}

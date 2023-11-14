@@ -9,7 +9,7 @@ blur_xray enable
 blur_passes 4
 blur_radius 2
 
-corner_radius 6
+# corner_radius 6
 
 shadows enable
 shadows_on_csd enable
@@ -286,7 +286,7 @@ input type:keyboard {
 input type:touchpad {
 	dwt enabled
 	middle_emulation enabled
-        tap enabled
+        # tap enabled
         accel_profile "flat"
         pointer_accel 0.2
         scroll_factor 0.3

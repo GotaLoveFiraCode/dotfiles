@@ -1,3 +1,4 @@
+-- {{{ General Settings (i.e. vim.opt)
 vim.opt.scs = true
 vim.opt.sta = true
 vim.opt.si  = true
@@ -8,7 +9,7 @@ vim.opt.nu  = true
 vim.opt.rnu = true
 vim.opt.cul = true
 vim.opt.spr = true
-vim.opt.so  = 4
+vim.opt.so  = 8
 vim.opt.swf = false
 vim.opt.ls  = 3
 vim.opt.sm  = true
@@ -19,39 +20,26 @@ vim.opt.tm  = 300
 vim.opt.cc  = "80"
 vim.opt.bri = true
 vim.opt.udf = true
--- better :find, essentially fuzzy finding
-vim.opt.pa:append "**"
--- first complete longest possible string, i.e. bash/zsh style
--- then open wildmenu and cycle through matches
-vim.opt.wim = { 'longest', 'full'  }
+vim.opt.wim = { 'longest', 'full' }
 vim.opt.wmnu = true
--- horizontal menu
 vim.opt.wildoptions:remove 'pum'
 vim.opt.wrap = false
 vim.opt.bg = 'dark'
 vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
-
 vim.opt.tags = './tags;$HOME'
 vim.opt.title = true
+vim.opt.fde = 'nvim_treesitter#foldexpr()'
+vim.opt.fdm = 'marker'
+-- vim.opt.fdc='auto:3'
+-- vim.o.fillchars = [[foldopen:▼,foldclose:⏵,foldsep: ]]
+-- vim.o.statuscolumn = '%=%l%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼" : "⏵") : " " }'
+-- vim.o.statuscolumn='%=%l%s%{foldlevel(v:lnum) > 0 ? (foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼" : "⏵") : "│") : " " }'
+-- }}}
 
-vim.opt.foldexpr = 'marker'
-vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:⏵]]
+-- Remove bg from folds
+vim.api.nvim_set_hl(0, 'Folded', {bg = nil, fg = '#89b4fa'})
 
--- vim.cmd [[
--- function! MyFoldText()
-
--- let line = getline(v:foldstart)
--- let folded_line_num = v:foldend - v:foldstart
--- let line_text = substitute(line, '^"{\+', '', 'g')
--- let fillcharcount = &textwidth - len(line_text) - len(folded_line_num)
-
--- return '+'. repeat('—', 4) . line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' L)'
-
--- endfunction
-
--- set foldtext=MyFoldText()
--- ]]
-
+-- {{{ <leader>oa == fold paragraph/open fold
 vim.keymap.set('n', '<leader>o', function()
 	local foldclosed = vim.fn.foldclosed(vim.fn.line("."))
 	if foldclosed == -1 then
@@ -59,5 +47,21 @@ vim.keymap.set('n', '<leader>o', function()
 	else
 		vim.cmd("silent! normal! zo")
 	end
-end)
+end) -- }}}
 
+-- {{{ <leader>on == switch foldmethod
+vim.keymap.set('n', '<leader>on', function()
+	if vim.o.foldmethod == 'manual' then
+		vim.opt.foldmethod = 'expr'
+	elseif vim.o.foldmethod == 'expr' then
+		vim.opt.foldmethod = 'marker'
+	elseif vim.o.foldmethod == 'marker' then
+		vim.opt.foldmethod = 'manual'
+	end
+	print(vim.cmd.set("foldmethod?"))
+end) -- }}}
+
+-- {{{ keymaps…
+vim.keymap.set('n', '}', '}zz')
+vim.keymap.set('n', '{', '{zz')
+-- }}}
