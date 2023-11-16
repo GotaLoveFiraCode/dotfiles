@@ -228,9 +228,9 @@ bindsym $mod+r mode "resize"
 
 mode "open" {
 	bindsym f exec firefox
-	bindsym t exec teams-for-linux
+	bindsym t exec flatpak run com.github.IsmaelMartinez.teams_for_linux
 	bindsym s exec steam
-	bindsym b exec brave
+	bindsym b exec brave-browser
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"

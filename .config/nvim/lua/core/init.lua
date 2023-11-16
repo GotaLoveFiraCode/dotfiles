@@ -1,4 +1,4 @@
--- {{{ General Settings (i.e. vim.opt)
+-- General Settings (i.e. vim.opt) {{{
 vim.opt.scs = true
 vim.opt.sta = true
 vim.opt.si  = true
@@ -29,7 +29,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 vim.opt.tags = './tags;$HOME'
 vim.opt.title = true
 vim.opt.fde = 'nvim_treesitter#foldexpr()'
-vim.opt.fdm = 'marker'
+-- vim.opt.fdm = 'marker'
 -- vim.opt.fdc='auto:3'
 -- vim.o.fillchars = [[foldopen:▼,foldclose:⏵,foldsep: ]]
 -- vim.o.statuscolumn = '%=%l%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼" : "⏵") : " " }'
@@ -50,12 +50,12 @@ vim.keymap.set('n', '<leader>o', function()
 end) -- }}}
 
 -- {{{ <leader>on == switch foldmethod
-vim.keymap.set('n', '<leader>on', function()
+vim.keymap.set('n', '<leader>o<leader>', function()
 	if vim.o.foldmethod == 'manual' then
-		vim.opt.foldmethod = 'expr'
-	elseif vim.o.foldmethod == 'expr' then
 		vim.opt.foldmethod = 'marker'
 	elseif vim.o.foldmethod == 'marker' then
+		vim.opt.foldmethod = 'expr'
+	elseif vim.o.foldmethod == 'expr' then
 		vim.opt.foldmethod = 'manual'
 	end
 	print(vim.cmd.set("foldmethod?"))
@@ -64,4 +64,13 @@ end) -- }}}
 -- {{{ keymaps…
 vim.keymap.set('n', '}', '}zz')
 vim.keymap.set('n', '{', '{zz')
+vim.keymap.set('n', '<C-I>', vim.cmd.bn)
+vim.keymap.set('n', '<C-s>', vim.cmd.w)
+vim.keymap.set('n', '<C-q>', vim.cmd.bd)
+vim.keymap.set('n', '<C-l>', vim.cmd.noh)
+vim.keymap.set({'n', 'v'}, '<C-p>', '"+')
+vim.keymap.set('n', '<leader>y', '0D')
+vim.keymap.set('n', '0', '^')
+vim.keymap.set('n', '^', '0')
 -- }}}
+
