@@ -1,0 +1,20 @@
+{
+    "workspace.library": [
+        "/home/ltr/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/share/nvim/runtime/lua",
+        "/home/ltr/.local/share/nvim/lazy/lazy.nvim/lua",
+        "/home/ltr/.local/share/nvim/lazy/oil.nvim/lua",
+        "/home/ltr/.local/share/nvim/lazy/plenary.nvim/lua",
+        "/home/ltr/.local/share/nvim/lazy/nvim-web-devicons/lua",
+        "/home/ltr/.local/share/nvim/lazy/neodev.nvim/lua",
+        "/home/ltr/.local/share/nvim/lazy/nvim-lspconfig/lua",
+        "/home/ltr/.local/share/nvim/lazy/telescope.nvim/lua",
+        "/home/ltr/.local/share/nvim/lazy/activate.nvim/lua",
+        "/home/ltr/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ],
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "lspkind"
+    ]
+}
