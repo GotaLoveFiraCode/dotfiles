@@ -1,24 +1,4 @@
 return {
-	--- Option 1: Very fast, no git, ugly{{{
-	-- 'sontungexpt/sttusline',
-	-- branch = 'table_version',
-	-- dependencies = {
-	-- 	'nvim-tree/nvim-web-devicons',
-	-- },
-	-- lazy = false,
-	-- config = function()
-	--         require('sttusline').setup()
-	-- end,
-
-	--- Option 2: Also fast, looks good, kinda bad
-	-- 'beauwilliams/statusline.lua',
-	-- config = function()
-	-- 	local statusline = require('statusline')
-	-- 	statusline.tabline = false
-	-- end,
-	-- lazy = false,}}}
-
-	-- Option 3: Very customisable.
 	'rebelot/heirline.nvim',
 	lazy = false,
 
