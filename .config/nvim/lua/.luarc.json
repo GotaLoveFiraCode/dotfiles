@@ -11,6 +11,7 @@
         "/home/ltr/.local/share/nvim/lazy/telescope.nvim/lua",
         "/home/ltr/.local/share/nvim/lazy/activate.nvim/lua",
         "/home/ltr/.config/nvim/lua",
+        "${3rd}/luv/library",
         "${3rd}/luv/library"
     ],
     "workspace.checkThirdParty": false,

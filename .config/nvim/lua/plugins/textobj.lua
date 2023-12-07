@@ -1,5 +1,5 @@
 return {
 	'chrisgrieser/nvim-various-textobjs',
-	lazy = false,
+	event = 'CursorHold',
 	opts = { useDefaultKeymaps = true }
 }

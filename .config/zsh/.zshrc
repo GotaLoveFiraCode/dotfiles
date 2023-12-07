@@ -54,28 +54,28 @@ export FZF_DEFAULT_OPTS='-m --height ~30% --reverse --border --margin 0,1 --info
 # Dynamic depth {{{
 lt() {
 	if [[ $1 == '--help' ]]; then
-		exa --help | grep "level DEPTH"
+		eza --help | grep "level DEPTH"
 	elif [[ $1 ]]; then
-		exa --icons --tree --level=$1
+		eza --icons --tree --level=$1
 	elif [[ ! $1 ]]; then
-		exa --icons --tree --level=2
+		eza --icons --tree --level=2
 	fi
 }
 
 lr() {
 	if [[ $1 == '--help' ]]; then
-		exa --help | grep "level DEPTH"
+		eza --help | grep "level DEPTH"
 	elif [[ $1 ]]; then
-		exa --icons -lhF --git --level=$1 -R
+		eza --icons -lhF --git --level=$1 -R
 	elif [[ ! $1 ]]; then
-		exa --icons -lhF --git --level=2 -R
+		eza --icons -lhF --git --level=2 -R
 	fi
 } # }}}
 
 # Aliases {{{
 alias v=nvim
-alias ls="exa --icons"
-alias ll="exa --icons -lhF --git"
+alias ls="eza --icons"
+alias ll="eza --icons -lhF --git"
 alias _=sudo
 alias ..="cd .."
 alias md="mkdir -p"
@@ -84,6 +84,48 @@ alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
 # }}}
 
 # Extra shell apps
+
+# interactive updater
+update() { # {{{
+	read choice"?:: Update using DNF? (y/n)? "
+	case "$choice" in
+		y|Y ) echo "==> yes — updating (DNF)…";;
+		n|N ) echo "==> no — exiting…"; return;;
+		* ) echo "==> invalid — exiting…"; return;;
+	esac
+	echo
+	sudo dnf upgrade
+
+	read choice"?:: Update using BREW? (y/n)? "
+	case "$choice" in
+		y|Y ) echo "==> yes — updating (BREW)…";;
+		n|N ) echo "==> no — exiting…"; return;;
+		* ) echo "==> invalid — exiting…"; return;;
+	esac
+	echo
+	brew update && brew upgrade
+
+	read choice"?:: Update using FLATPAK? (y/n)? "
+	case "$choice" in
+		y|Y ) echo "==> yes — updating (FLATPAK)…";;
+		n|N ) echo "==> no — exiting…"; return;;
+		* ) echo "==> invalid — exiting…"; return;;
+	esac
+	echo
+	flatpak update
+
+	read choice"?:: Update using CARGO? (y/n)? "
+	case "$choice" in
+		y|Y ) echo "==> yes — updating (CARGO)…";;
+		n|N ) echo "==> no — exiting…"; return;;
+		* ) echo "==> invalid — exiting…"; return;;
+	esac
+	echo
+	cargo-install-update install-update --all
+
+	echo
+	echo ":: DONE!"
+} # }}}
 
 # FZF, C-t {{{
 if [[ $- == *i* ]]; then
@@ -120,9 +162,37 @@ if [[ $- == *i* ]]; then
 
 fi # }}}
 
+if [[ $- == *i* ]]; then # {{{ SK, C-n
+
+	__sksel() {
+		setopt localoptions pipefail 2> /dev/null
+		command fd -LHt f --min-depth=1 | sk -m "$@" | while read item; do
+			echo -n "${(q)item} "
+		done
+		local ret=$?
+		echo
+		return $ret
+	}
+
+	sk-file-widget() {
+		LBUFFER="${LBUFFER}$(__sksel)"
+		local ret=$?
+		zle reset-prompt
+		return $ret
+	}
+	zle     -N   sk-file-widget
+	bindkey '^N' sk-file-widget
+fi # }}}
+
 eval "$(zoxide init zsh --cmd t)"
 
 autoload -Uz promptinit && promptinit && prompt pure
+
+# install fonts:
+# ```
+# mv path/to/font ~/.local/share/fonts
+# fc-cache -fv
+# ```
 
 # nnn {{{
 # n ()

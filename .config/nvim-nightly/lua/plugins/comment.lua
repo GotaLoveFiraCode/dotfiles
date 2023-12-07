@@ -1,9 +1,11 @@
 return {
-	'numToStr/Comment.nvim',
-	config = true,
+	'terrortylor/nvim-comment',
+	cmd = 'CommentToggle',
 	keys = {
-		{ 'gc', mode = {'v', 'n'}, desc = 'Comment Line-style'  },
-		{ 'gb', mode = {'v', 'n'}, desc = 'Comment Block-style' }
-	}
+		{ 'gcc' },
+		{ 'gc', mode = {'n', 'v'} }
+	},
+	config = function()
+		require("nvim_comment").setup({ comment_empty = false })
+	end
 }
-

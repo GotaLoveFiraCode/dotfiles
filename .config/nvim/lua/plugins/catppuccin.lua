@@ -6,81 +6,36 @@ return {
 
 	config = function() -- {{{
 		require'catppuccin'.setup {
-			flavour = "mocha",
-			transparent_background = false,
-			term_colors = true,
-
-			dim_inactive = { -- {{{
-				enabled = false, -- dim inactive windows
-				shade = "dark",
-				percentage = 0.15, -- how much darker
-			}, -- }}}
+			-- flavour = "mocha",
+			-- transparent_background = false,
+			-- term_colors = true,
+			-- show_end_of_buffer = true,
 
 			styles = { -- {{{
-				comments = { "italic" },
-				conditionals = { "italic" },
-				loops = { "italic" },
-				functions = { "bold" },
-				keywords = { "bold" },
-				strings = {},
-				variables = {},
-				numbers = {},
-				booleans = {},
+				-- keywords = { "bold" },
 				-- properties = { "italic" },
+				functions = { "bold" },
+				loops = { "italic" },
 				types = { "italic" },
-				operators = {},
 			}, -- }}}
 
 			integrations = { -- {{{
 
-				telescope = { -- {{{
-					enabled = true,
-					-- style = 'nvchad'
-				}, -- }}}
+				-- illuminate = {
+				-- 	lsp = true -- highlight definition of word.
+				-- },
 
-				native_lsp = { -- {{{
-					enabled = true,
-					virtual_text = {
-						errors = { "italic" },
-						hints = { "italic" },
-						warnings = { "italic" },
-						information = { "italic" },
-					},
-					underlines = {
-						errors = { "underline" },
-						hints = { "underline" },
-						warnings = { "underline" },
-						information = { "underline" },
-					},
-					inlay_hints = {
-						background = true,
-					},
-				}, -- }}}
-
-				illuminate = { -- {{{
-					enabled = true,
-					lsp = true
-				}, -- }}}
-
-				indent_blankline = { -- {{{
-					enabled = true,
-					scope_color = "blue"
-				}, -- }}}
-
-				treesitter = true, -- {{{ Other plugins
 				treesitter_context = true,
-				cmp = true,
 				lsp_trouble = true,
 				leap = true,
-				gitsigns = true,
+				fidget = true,
 				harpoon = true,
 				headlines = true,
-				markdown = true,
-				neogit = true,
-				alpha = true -- }}}
+				indent_blankline = { scope_color = "lavender" },
 			}, -- }}}
 		}
 
 		vim.cmd.colorscheme('catppuccin')
 	end -- }}}
 }
+

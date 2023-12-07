@@ -1,51 +1,41 @@
 return {
-	'catppuccin/nvim',
-	name = 'catppuccin',
-	priority = 10000,
-	config = function()
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
+	lazy = false,
+
+	config = function() -- {{{
 		require'catppuccin'.setup {
-			flavour = "mocha",
-			transparent_background = false,
-			term_colors = true,
-			dim_inactive = {
-				enabled = false, -- dims the background color of inactive window
-				shade = "dark",
-				percentage = 0.15, -- percentage of the shade to apply to the inactive window
-			},
-			styles = {
-				comments = { "italic" },
-				conditionals = { "italic" },
-				loops = { "italic" },
+			-- flavour = "mocha",
+			-- transparent_background = false,
+			-- term_colors = true,
+			-- show_end_of_buffer = true,
+
+			styles = { -- {{{
+				-- keywords = { "bold" },
+				-- properties = { "italic" },
 				functions = { "bold" },
-				keywords = { "bold" },
-				strings = {},
-				variables = {},
-				numbers = {},
-			booleans = {},
-				properties = { "italic" },
+				loops = { "italic" },
 				types = { "italic" },
-				operators = {},
-			},
-			integrations = {
-				gitsigns = true,
-				treesitter = true,
-				-- notify = true,
-				alpha = true,
-				-- harpoon = true,
-				-- headlines = true,
-				--[[ indent_blankline = {
-				enabled = true,
-				scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
-				colored_indent_levels = false,
-				}, --]]
-				-- leap = true,
-				-- mason = true,
-				-- neogit = true,
-				cmp = false,
+			}, -- }}}
+
+			integrations = { -- {{{
+
+				-- illuminate = {
+				-- 	lsp = true -- highlight definition of word.
+				-- },
+
 				treesitter_context = true,
-				which_key = true,
-			},
+				lsp_trouble = true,
+				leap = true,
+				fidget = true,
+				harpoon = true,
+				headlines = true,
+				indent_blankline = { scope_color = "lavender" },
+			}, -- }}}
 		}
+
 		vim.cmd.colorscheme('catppuccin')
-	end,
+	end -- }}}
 }
+

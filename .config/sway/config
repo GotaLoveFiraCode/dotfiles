@@ -11,8 +11,8 @@ blur_radius 2
 
 # corner_radius 6
 
-shadows enable
-shadows_on_csd enable
+# shadows enable
+# shadows_on_csd enable
 
 # scratchpad_minimize enable
 
@@ -230,7 +230,11 @@ mode "open" {
 	bindsym f exec firefox
 	bindsym t exec flatpak run com.github.IsmaelMartinez.teams_for_linux
 	bindsym s exec steam
-	bindsym b exec brave-browser
+	bindsym b exec brave-browser-stable
+        bindsym h exec tidal-hifi
+        bindsym l exec libreoffice
+        bindsym p exec pcmanfm
+        bindsym n exec librewolf
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -260,30 +264,28 @@ bindsym $mod+u mode "open"
 # the trick, it's all in the `wordexp(3)`.
 #
 
-bindsym $mod+Shift+b exec firefox
+bindsym $mod+Shift+b exec librewolf
 
 #                       border  bg      text    tiling
 client.focused          #a3be8c #a3be8c #2e3440 #bf616a
 client.focused_inactive #3b4252 #3b4252 #e5e9f0 #8fbcbb
 client.unfocused        #2e3440 #2e3440 #d8dee9 #81a1c1
 client.urgent           #bf616a #bf616a #a3be8c #5e81ac
-gaps inner 8
-gaps outer 5
+gaps inner 2
+gaps outer -2
+# gaps inner 8
+# gaps outer 5
 default_border pixel 3
 default_floating_border pixel 4
 # exec_always --no-startup-id workstyle &> /tmp/workstyle.log
-bindsym $mod+x exec "swaylock -e -F -f -k -l --font Comfortaa"
-bindsym $mod+Shift+t exec "flatpak run com.github.IsmaelMartinez.teams_for_linux"
+bindsym $mod+x exec "swaylock -e -F -f -k -l --font Comfortaa && systemctl suspend"
  
 # keyboard layout switching:
 input type:keyboard {
+	xkb_layout us(cmk_ed_dh),us
+        xkb_switch_layout next
+        xkb_options grp:ctrls_toggle,lv5:caps_switch_lock,misc:sym_wide-104,ctrl:swap_lalt_lctl,shift:both_capslock_cancel,misc:extend
 	xkb_model pc104awide
-	xkb_layout us
-	xkb_variant cmk_ed_dh
-# sets extend to capslock,
-# sets better symbols, i.e. '- ; \ =';
-# sets capslock when both shiftkeys are pressed at once:
-	xkb_options lv5:caps_switch_lock,misc:extend,misc:sym_wide-104,shift:both_capslock_cancel,ctrl:swap_lalt_lctl
 }
 
 input type:touchpad {
@@ -295,8 +297,11 @@ input type:touchpad {
         scroll_factor 0.3
 }
 
-bindsym $mod+c exec "imv ~/Documents/QWERTZ.jpg"
-bindsym $mod+l exec "libreoffice"
+input type:pointer {
+        accel_profile "flat"
+        pointer_accel 0.0
+        dwt disabled
+}
 
 bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next

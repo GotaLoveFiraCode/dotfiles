@@ -6,3 +6,4 @@ return {
 		{ '<leader>cc', vim.cmd.ColorizerReloadAllBuffers, desc = "Reload Color" }
 	}
 }
+

@@ -1,18 +1,26 @@
 return {
 	'neovim/nvim-lspconfig',
+	ft = 'c',
 
 	dependencies = { -- {{{
-		'folke/trouble.nvim',
+		-- 'folke/trouble.nvim',
 		'nvim-telescope/telescope.nvim',
 		'p00f/clangd_extensions.nvim',
-		{ 'j-hui/fidget.nvim', config = true }
+		'hrsh7th/cmp-nvim-lsp',
+		{ 'j-hui/fidget.nvim', opts = {
+			notification = {
+				window = {
+					winblend = 0,
+				}
+			}
+		}}
 	}, -- }}}
 
 	config = function() -- {{{
 		local tr = require("trouble")
 
-		vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-		vim.keymap.set('n', '<space>q', function()
+		vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+		vim.keymap.set('n', '<leader>q', function()
 			tr.toggle("workspace_diagnostics")
 		end)
 
@@ -34,17 +42,14 @@ return {
 				vim.keymap.set('n', 'gr', function()
 					tr.toggle('lsp_references')
 				end, opts)
-				vim.keymap.set('n',
-					'<leader>ds',
-					require 'telescope.builtin'.lsp_dynamic_workspace_symbols,
-				opts) -- }}}
+				-- }}}
 
 				-- {{{ Normal mappings
 				vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 				vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 				vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 				vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-				vim.keymap.set('n', '<leader>lrn', vim.lsp.buf.rename, opts)
+				vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 				-- }}}
 
 				vim.keymap.set( -- {{{ workspace management
@@ -94,6 +99,5 @@ return {
 			notify(msg, ...)
 		end
 	end, -- }}}
-	ft = 'c',
 }
 

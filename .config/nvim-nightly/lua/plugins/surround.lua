@@ -1,6 +1,15 @@
 return {
-	'kylechui/nvim-surround',
+	"kylechui/nvim-surround",
 	version = "*",
-	event = { "CursorHold", "CursorHoldI" },
-	config = true
+	config = true,
+	keys = {
+		{ 'ys' },
+		{ 'yS' },
+		{ 'cs' },
+		{ 'cS' },
+		{ 'ds' },
+		{ 'S', mode = 'v' },
+		{ '<C-g>s', mode = 'i' },
+		{ '<C-g>S', mode = 'i' },
+	}
 }
