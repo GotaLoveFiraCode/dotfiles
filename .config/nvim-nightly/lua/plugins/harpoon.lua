@@ -20,8 +20,9 @@ return {
 		-- { '\'2', function() require 'harpoon':list():select(2) end },
 		-- { '\'3', function() require 'harpoon':list():select(3) end },
 		-- { '\'4', function() require 'harpoon':list():select(4) end },
-		
+
 		-- since I mostly use trailblazer, I had to change my config.
+		-- {  },
 	},
 
 	config = function()
