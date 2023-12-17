@@ -10,12 +10,8 @@ blur_passes 4
 blur_radius 2
 
 # corner_radius 6
-
 # shadows enable
 # shadows_on_csd enable
-
-# scratchpad_minimize enable
-
 
 ######################################################
 ####### SwayFX settings...                ############
@@ -280,13 +276,19 @@ default_floating_border pixel 4
 # exec_always --no-startup-id workstyle &> /tmp/workstyle.log
 bindsym $mod+x exec "swaylock -e -F -f -k -l --font Comfortaa && systemctl suspend"
  
-# keyboard layout switching:
+# keyboard layout switching: 
+
 input type:keyboard {
 	xkb_layout us(cmk_ed_dh),us
-        xkb_switch_layout next
         xkb_options grp:ctrls_toggle,lv5:caps_switch_lock,misc:sym_wide-104,ctrl:swap_lalt_lctl,shift:both_capslock_cancel,misc:extend
 	xkb_model pc104awide
 }
+
+# input type:keyboard {
+# 	xkb_layout us(cmk_ed_dh)
+#         xkb_options lv5:caps_switch_lock,misc:sym_wide-104,ctrl:swap_lalt_lctl,shift:both_capslock_cancel,misc:extend
+# 	xkb_model pc104awide
+# }
 
 input type:touchpad {
 	dwt enabled

@@ -21,18 +21,23 @@ vim.opt.cc  = "80"
 vim.opt.bri = true
 vim.opt.udf = true
 vim.opt.wrap = false
-vim.opt.bg = 'dark'
+
+vim.opt.bg = 'dark' -- set background to dark
+vim.opt.tgc = true
+
 -- vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 vim.opt.tags = './tags;$HOME'
 vim.opt.title = true
 vim.opt.fde = 'nvim_treesitter#foldexpr()'
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 -- vim.opt.fdm = 'marker'
 -- vim.opt.fdc='auto:3'
 -- vim.o.fillchars = [[foldopen:▼,foldclose:⏵,foldsep: ]]
 -- vim.o.statuscolumn = '%=%l%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼" : "⏵") : " " }'
 -- vim.o.statuscolumn='%=%l%s%{foldlevel(v:lnum) > 0 ? (foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼" : "⏵") : "│") : " " }'
 -- }}}
+
+-- vim.cmd.set('t_ut=')
 
 -- Remove bg from folds
 vim.api.nvim_set_hl(0, 'Folded', {bg = nil, fg = '#89b4fa'})
@@ -60,15 +65,12 @@ vim.keymap.set('n', '<leader>o<leader>', function()
 end) -- }}}
 
 -- {{{ keymaps…
-vim.keymap.set('n', '}', '}zz')
-vim.keymap.set('n', '{', '{zz')
-vim.keymap.set('n', '<C-I>', vim.cmd.bn)
 vim.keymap.set('n', '<C-s>', vim.cmd.w)
-vim.keymap.set('n', '<C-Q>', vim.cmd.bd)
+-- vim.keymap.set('n', '<C-Q>', vim.cmd.bd)
 vim.keymap.set('n', '<C-l>', vim.cmd.noh)
 vim.keymap.set({'n', 'v'}, '<C-p>', '"+')
-vim.keymap.set('n', '0', '^')
-vim.keymap.set('n', '^', '0')
+-- vim.keymap.set('n', '0', '^')
+-- vim.keymap.set('n', '^', '0')
 vim.keymap.set('n', 'g-', ':')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 -- }}}

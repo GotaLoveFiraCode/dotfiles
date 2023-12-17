@@ -81,6 +81,10 @@ alias ..="cd .."
 alias md="mkdir -p"
 alias config='/usr/bin/git --git-dir=/home/ltr/.cfg/ --work-tree=/home/ltr'
 alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
+alias code='neovide --multigrid'
+alias s='exec tmux new -s start && exit'
+alias a='tmux a && exit'
+alias getip='curl --max-time 1.5 --silent http://ip.me'
 # }}}
 
 # Extra shell apps
@@ -89,39 +93,46 @@ alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
 update() { # {{{
 	read choice"?:: Update using DNF? (y/n)? "
 	case "$choice" in
-		y|Y ) echo "==> yes — updating (DNF)…";;
-		n|N ) echo "==> no — exiting…"; return;;
+		y|Y )
+			echo "==> yes — updating (DNF)…"
+			echo
+			sudo dnf upgrade;;
+		n|N ) echo "==> no — cancelling…";;
 		* ) echo "==> invalid — exiting…"; return;;
 	esac
 	echo
-	sudo dnf upgrade
 
 	read choice"?:: Update using BREW? (y/n)? "
 	case "$choice" in
-		y|Y ) echo "==> yes — updating (BREW)…";;
-		n|N ) echo "==> no — exiting…"; return;;
+		y|Y )
+			echo "==> yes — updating (BREW)…"
+			echo
+			brew update && brew upgrade;;
+		n|N ) echo "==> no — cancelling…";;
 		* ) echo "==> invalid — exiting…"; return;;
 	esac
 	echo
-	brew update && brew upgrade
 
 	read choice"?:: Update using FLATPAK? (y/n)? "
 	case "$choice" in
-		y|Y ) echo "==> yes — updating (FLATPAK)…";;
-		n|N ) echo "==> no — exiting…"; return;;
+		y|Y )
+			echo "==> yes — updating (FLATPAK)…"
+			echo
+			flatpak update;;
+		n|N ) echo "==> no — cancelling…";;
 		* ) echo "==> invalid — exiting…"; return;;
 	esac
 	echo
-	flatpak update
 
 	read choice"?:: Update using CARGO? (y/n)? "
 	case "$choice" in
-		y|Y ) echo "==> yes — updating (CARGO)…";;
-		n|N ) echo "==> no — exiting…"; return;;
+		y|Y )
+			echo "==> yes — updating (CARGO)…"
+			echo
+			cargo-install-update install-update --all;;
+		n|N ) echo "==> no — cancelling…";;
 		* ) echo "==> invalid — exiting…"; return;;
 	esac
-	echo
-	cargo-install-update install-update --all
 
 	echo
 	echo ":: DONE!"
@@ -187,6 +198,10 @@ fi # }}}
 eval "$(zoxide init zsh --cmd t)"
 
 autoload -Uz promptinit && promptinit && prompt pure
+
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+# 	(exec tmux new -s start && exit) || echo "tmux 'start' already running"
+# fi
 
 # install fonts:
 # ```

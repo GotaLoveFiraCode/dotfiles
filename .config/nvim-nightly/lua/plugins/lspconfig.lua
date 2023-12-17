@@ -48,7 +48,7 @@ return {
 				vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 				vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 				vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-				vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+				vim.keymap.set('n', '<leader>kk', vim.lsp.buf.signature_help, opts)
 				vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 				-- }}}
 
@@ -77,7 +77,7 @@ return {
 			end, -- }}}
 		})
 
-		-- integrate cmp
+		-- integrate cmp {{{
 		require 'lspconfig'.util.default_config = vim.tbl_deep_extend("force",
 			require 'lspconfig'.util.default_config,
 			{ capabilities = require 'cmp_nvim_lsp'.default_capabilities() })
@@ -89,6 +89,7 @@ return {
 			end,
 		}
 		require('lspconfig').ccls.setup {}
+		-- }}}
 
 		local notify = vim.notify
 		vim.notify = function(msg, ...)

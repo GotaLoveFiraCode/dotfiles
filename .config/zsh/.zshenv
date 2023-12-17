@@ -10,7 +10,7 @@ alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
 alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
 
 export PATH="$HOME/.local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
-export EDITOR="/usr/bin/nvim"
+export EDITOR="/home/ltr/.local/bin/nv"
 export VISUAL="neovide --multigrid"
 export PAGER=bat
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
