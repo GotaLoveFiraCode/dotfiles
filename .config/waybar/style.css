@@ -1,3 +1,34 @@
+@define-color base   #1e1e2e;
+@define-color mantle #181825;
+@define-color crust  #11111b;
+
+@define-color text     #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color subtext1 #bac2de;
+
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+
+@define-color overlay0 #6c7086;
+@define-color overlay1 #7f849c;
+@define-color overlay2 #9399b2;
+
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color sapphire  #74c7ec;
+@define-color sky       #89dceb;
+@define-color teal      #94e2d5;
+@define-color green     #a6e3a1;
+@define-color yellow    #f9e2af;
+@define-color peach     #fab387;
+@define-color maroon    #eba0ac;
+@define-color red       #f38ba8;
+@define-color mauve     #cba6f7;
+@define-color pink      #f5c2e7;
+@define-color flamingo  #f2cdcd;
+@define-color rosewater #f5e0dc;
+
 * {
   border: none;
   border-radius: 0;
@@ -7,7 +38,8 @@
 }
 
 window#waybar {
-  background-color: #181825;
+  /* background-color: #181825; */
+  background-color: @mantle;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -27,30 +59,38 @@ window#waybar.hidden {
   padding: 6px 20px;
   margin: 0px 2px;
   /* border-radius: 4px; */
-  background-color: #1e1e2e;
-  color: #5e81ac;
+  /* background-color: #1e1e2e; */
+  background-color: @base;
+  /* color: #5e81ac; */
+  color: @blue;
   transition-duration: 0.4s;
 }
 
 #workspaces button.focused {
   padding: 6px 26px;
   /* border-radius: 6px; */
-  color: #eceff4;
-  background-color: #2e3440;
+  /* color: #eceff4; */
+  color: @text;
+  /* background-color: #2e3440; */
+  background-color: @surface0;
   transition-duration: 0.1s;
 }
 
 #workspaces button:hover {
  box-shadow: inherit;
  text-shadow: inherit;
- color: #2e3440;
- background-color: #8fbcbb;
+ /* color: #2e3440; */
+ color: @base;
+ /* background-color: #8fbcbb; */
+ background-color: @teal;
 }
 
 #workspaces button.urgent {
-  background-color: #bf616a;
+  /* background-color: #bf616a; */
+  background-color: @red;
   /* margin: 6px 12px; */
-  color: #eceff4;
+  /* color: #eceff4; */
+  color: @text;
 }
 
 #memory,
@@ -67,12 +107,15 @@ window#waybar.hidden {
   /* border-radius: 4px; */
   /* margin: 6px 3px; */
   padding: 6px 8px;
-  background-color: #d8dee9;
-  color: #2e3440;
+  /* background-color: #d8dee9; */
+  background-color: @overlay2;
+  /* color: #2e3440; */
+  color: @mantle;
 }
 
 #custom-power {
-  background-color: #bf616a;
+  /* background-color: #bf616a; */
+  background-color: @red;
   padding: 2px 8px;
   margin: 5px;
   margin-left: 8px;
@@ -80,24 +123,30 @@ window#waybar.hidden {
 }
 
 #memory {
-  background-color: #ebcb8b;
+  /* background-color: #ebcb8b; */
+  background-color: @yellow;
 }
 #battery {
-  background-color: #d08770;
+  /* background-color: #d08770; */
+  background-color: @peach;
 }
 
 @keyframes blink {
   to {
-    background-color: #f38ba8;
-    color: #181825;
+    /* background-color: #f38ba8; */
+    background-color: @maroon;
+    /* color: #181825; */
+    color: @crust;
   }
 }
 
 #battery.warning,
 #battery.critical,
 #battery.urgent {
-  background-color: #ff0048;
-  color: #181825;
+  /* background-color: #ff0048; */
+  background-color: @red;
+  /* color: #181825; */
+  color: @crust;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -105,83 +154,99 @@ window#waybar.hidden {
   animation-direction: alternate;
 }
 #battery.charging {
-  background-color: #a3be8c;
+  /* background-color: #a3be8c; */
+  background-color: @green;
 }
 
 #backlight {
-  background-color: #ebcb8b;
+  /* background-color: #ebcb8b; */
+  background-color: @yellow;
 }
 
 #pulseaudio {
   padding-right: 12px;
-  background-color: #a3be8c;
+  /* background-color: #a3be8c; */
+  background-color: @green;
 }
 
 #pulseaudio.muted {
-	background-color: #2e3440;
-	color: #5e81ac;
+	/* background-color: #2e3440; */
+	background-color: @surface0;
+	/* color: #5e81ac; */
+	color: @sapphire;
 }
 
 #network {
-  background-color: #8fbcbb;
+  /* background-color: #8fbcbb; */
+  background-color: @teal;
   padding-right: 13px;
 }
 
 #network.disconnected {
-	background-color: #2e3440;
-	color: #5e81ac;
+	/* background-color: #2e3440; */
+	background-color: @surface0;
+	color: @sapphire;
 }
 
 #clock {
   font-family: JetBrainsMono Nerd Font;
-  background-color: #b48ead;
+  /* background-color: #b48ead; */
+  background-color: shade(@pink, 0.9);
   /* margin-left: 6px; */
 }
 
 #temperature {
-  background-color: #d08770;
+  /* background-color: #d08770; */
+  background-color: @peach;
 }
 
 #cpu {
-	background-color: #bf616a;
+	/* background-color: #bf616a; */
+	background-color: @red;
 }
 
 #mode {
-	background-color: #2e3440;
-	color: #8fbcbb;
+	/* background-color: #2e3440; */
+	background-color: @surface0;
+	color: @teal;
 	/* margin: 6px 12px; */
 	padding: 6px 12px;
 }
 
 #scratchpad {
-	color: #8fbcbb;
+	/* color: #8fbcbb; */
+	color: @teal;
 }
 
 #window {
 	/* margin: 6px 3px; */
 	padding: 6px 8px;
 	/* border-radius: 4px ; */
-	color: #8fbcbb;
+	/* color: #8fbcbb; */
+	color: @teal;
 	font-family: Comfortaa;
 	font-weight: bolder;
 }
 
 #idle_inhibitor {
-	background-color: #8fbcbb;
+	/* background-color: #8fbcbb; */
+  background-color: @teal;
 	padding-right: 12px;
 }
 
 #tray {
-	background-color: #a3be8c;
+	/* background-color: #a3be8c; */
+	background-color: @green;
 }
 
 tooltip {
-/* border-radius: 8px; */
+border-radius: 8px;
 padding: 15px;
-background-color: #131822;
+/* background-color: #131822; */
+background-color: alpha(@crust, 0.8);
 }
 
 tooltip label {
 padding: 5px;
-background-color: #131822;
+/* background-color: alpha(@crust, 0.3); */
 }

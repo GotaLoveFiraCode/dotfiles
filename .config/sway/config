@@ -1,6 +1,6 @@
 #######################################################
-###           SwayFX settings...        ###############
-######                 START!              ############
+### SwayFX settings...            #####################
+################ START!                    ############
 #######################################################
 
 
@@ -9,14 +9,44 @@ blur_xray enable
 blur_passes 4
 blur_radius 2
 
-# corner_radius 6
-# shadows enable
-# shadows_on_csd enable
+corner_radius 6
+shadows enable
+shadows_on_csd enable
 
 ######################################################
 ####### SwayFX settings...                ############
-#############   END!                          ########
+############# END!                            ########
 ######################################################
+
+# @@ CATPPUCCIN THEME VARS @@
+
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
+# @@ CATPPUCCIN THEME VARS END @@
 
 
 # Default config for sway
@@ -34,20 +64,26 @@ set $left n
 set $down e
 set $up i
 set $right o
+
 # Your preferred terminal emulator
 # Recommends: foot
+# set $term foot
+# set $term alacritty
 set $term alacritty
+set $termalt foot
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # Recommends: rofi-wayland
 set $rofi_cmd rofi \
-        -terminal '$term'
+    -terminal '$term'
 # Shows a combined list of the applications with desktop files and
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi -p "Run: "
 set $search $rofi_cmd -show window -p "Run: "
+set $dmenu dmenu_run
 
 ### Output configuration
 #
@@ -66,9 +102,9 @@ output * bg ~/Pictures/wallpapers/jad-limcaco-183877.jpg fill
 # Example configuration:
 #
 # exec swayidle -w \
-# 	timeout 150 'swaylock -f -i ~/Pictures/wallpapers/ferdinand-stohr-149422.jpg -s fill' \
-# 	timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-# 	before-sleep 'swaylock -f -c 193728'
+#    timeout 150 'swaylock -f -i ~/Pictures/wallpapers/ferdinand-stohr-149422.jpg -s fill' \
+#    timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#    before-sleep 'swaylock -f -c 193728'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -94,13 +130,15 @@ output * bg ~/Pictures/wallpapers/jad-limcaco-183877.jpg fill
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec $termalt
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+p exec $menu
-	bindsym $mod+Shift+p exec $search
+    bindsym $mod+Shift+p exec $search
+    bindsym $mod+d exec $dmenu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -262,15 +300,16 @@ bindsym $mod+u mode "open"
 
 bindsym $mod+Shift+b exec librewolf
 
-#                       border  bg      text    tiling
-client.focused          #a3be8c #a3be8c #2e3440 #bf616a
-client.focused_inactive #3b4252 #3b4252 #e5e9f0 #8fbcbb
-client.unfocused        #2e3440 #2e3440 #d8dee9 #81a1c1
-client.urgent           #bf616a #bf616a #a3be8c #5e81ac
-gaps inner 2
-gaps outer -2
-# gaps inner 8
-# gaps outer 5
+#                       border    bg        text      tiling
+client.focused          $green    $green    $base     $red
+client.focused_inactive $overlay0 $overlay0 $mantle   $teal
+client.unfocused        $surface1 $surface1 $subtext0 $sapphire
+client.urgent           $red      $red      $green    $blue
+
+# gaps inner 2
+# gaps outer -2
+gaps inner 8
+gaps outer 5
 default_border pixel 3
 default_floating_border pixel 4
 # exec_always --no-startup-id workstyle &> /tmp/workstyle.log
@@ -300,13 +339,15 @@ input type:touchpad {
 }
 
 input type:pointer {
-        accel_profile "flat"
-        pointer_accel 0.0
-        dwt disabled
+    accel_profile "flat"
+    pointer_accel 0.0
+    dwt disabled
 }
 
 bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
+
+bindsym $mod+t exec "swaymsg input type:touchpad events toggle"
 
 font Comfortaa 10
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

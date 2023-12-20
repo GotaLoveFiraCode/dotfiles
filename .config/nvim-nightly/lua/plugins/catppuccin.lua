@@ -14,6 +14,7 @@ return {
 			styles = { -- {{{
 				-- keywords = { "bold" },
 				-- properties = { "italic" },
+				keywords = { "italic" },
 				functions = { "bold" },
 				loops = { "italic" },
 				types = { "italic" },

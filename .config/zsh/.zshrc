@@ -49,7 +49,10 @@ antidote load
 
 # Normal settings
 
-export FZF_DEFAULT_OPTS='-m --height ~30% --reverse --border --margin 0,1 --info right --separator = --scrollbar ↓'
+export FZF_DEFAULT_OPTS="-m --height ~30% --reverse --border --margin 0,1 --info right --separator = --scrollbar ↓ \
+--color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
 # Dynamic depth {{{
 lt() {
@@ -82,8 +85,8 @@ alias md="mkdir -p"
 alias config='/usr/bin/git --git-dir=/home/ltr/.cfg/ --work-tree=/home/ltr'
 alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
 alias code='neovide --multigrid'
-alias s='exec tmux new -s start && exit'
-alias a='tmux a && exit'
+alias s='exec tmux'
+alias a='exec tmux attach'
 alias getip='curl --max-time 1.5 --silent http://ip.me'
 # }}}
 
@@ -159,7 +162,7 @@ if [[ $- == *i* ]]; then
 
 	__fzfcmd() {
 		__fzf_use_tmux__ &&
-			echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
+			echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf-tmux"
 		}
 
 		fzf-file-widget() {
@@ -177,7 +180,7 @@ if [[ $- == *i* ]]; then # {{{ SK, C-n
 
 	__sksel() {
 		setopt localoptions pipefail 2> /dev/null
-		command fd -LHt f --min-depth=1 | sk -m "$@" | while read item; do
+		command fd -LHt f --min-depth=1 | sk-tmux -m "$@" | while read item; do
 			echo -n "${(q)item} "
 		done
 		local ret=$?
@@ -200,7 +203,7 @@ eval "$(zoxide init zsh --cmd t)"
 autoload -Uz promptinit && promptinit && prompt pure
 
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-# 	(exec tmux new -s start && exit) || echo "tmux 'start' already running"
+	# always add this to ssh command: `-t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'`
 # fi
 
 # install fonts:
