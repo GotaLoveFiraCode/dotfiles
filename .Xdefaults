@@ -1,0 +1,75 @@
+*.font: JetBrainsMono NF:pixelsize=17:antialias=true:autohint=true;
+/* *.font: IosevkaTerm NF:pixelsize=17:antialias=true:autohint=true; */
+/* st.alpha: 1.0 */
+st.borderpx: 5
+
+!! @@ catppuccin @@
+
+!! Normal Colors
+*.color0: #45475A
+*.color1: #F38BA8
+*.color2: #A6E3A1
+*.color3: #F9E2AF
+*.color4: #89B4FA
+*.color5: #F5C2E7
+*.color6: #94E2D5
+*.color7: #BAC2DE
+
+!! Bright Colors
+*.color8:  #585B70
+*.color9:  #F38BA8
+*.color10: #A6E3A1
+*.color11: #F9E2AF
+*.color12: #89B4FA
+*.color13: #F5C2E7
+*.color14: #94E2D5
+*.color15: #A6ADC8
+
+!! Other Colors
+*.background: #1E1E2E
+*.foreground: #CDD6F4
+*.cursorColor: #F5E0DC
+
+
+/* !! gruvbox: */
+/* *.color0: #1d2021 */
+/* *.color1: #cc241d */
+/* *.color2: #98971a */
+/* *.color3: #d79921 */
+/* *.color4: #458588 */
+/* *.color5: #b16286 */
+/* *.color6: #689d6a */
+/* *.color7: #a89984 */
+/* *.color8: #928374 */
+/* *.color9: #fb4934 */
+/* *.color10: #b8bb26 */
+/* *.color11: #fabd2f */
+/* *.color12: #83a598 */
+/* *.color13: #d3869b */
+/* *.color14: #8ec07c */
+/* *.color15: #ebdbb2 */
+/* *.background: #282828 */
+/* *.foreground: white */
+/* *.cursorColor: white */
+
+/* !! brogrammer: */
+/* *.foreground:  #d6dbe5 */
+/* *.background:  #131313 */
+/* *.color0:      #1f1f1f */
+/* *.color8:      #d6dbe5 */
+/* *.color1:      #f81118 */
+/* *.color9:      #de352e */
+/* *.color2:      #2dc55e */
+/* *.color10:     #1dd361 */
+/* *.color3:      #ecba0f */
+/* *.color11:     #f3bd09 */
+/* *.color4:      #2a84d2 */
+/* *.color12:     #1081d6 */
+/* *.color5:      #4e5ab7 */
+/* *.color13:     #5350b9 */
+/* *.color6:      #1081d6 */
+/* *.color14:     #0f7ddb */
+/* *.color7:      #d6dbe5 */
+/* *.color15:     #ffffff */
+/* *.colorBD:     #d6dbe5 */
+
