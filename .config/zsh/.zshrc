@@ -1,245 +1,109 @@
-# Lines configured by zsh-newuser-install: {{{
-setopt beep extendedglob nomatch
-unsetopt autocd notify
-bindkey -v
-# End of lines configured by zsh-newuser-install. }}}
-
-# The following lines were added by compinstall: {{{
-
-zstyle ':completion:*' auto-description '==> specify: %d'
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' completions 1
-zstyle ':completion:*' file-sort modification
-zstyle ':completion:*' glob 1
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '+m:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' '+'
-zstyle ':completion:*' max-errors 3 numeric
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' preserve-prefix '//[^/]##/'
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' substitute 1
-zstyle ':completion:*' verbose true
-zstyle ':completion:*' menu select
-
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
-zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-
-zstyle :compinstall filename '/home/ltr/.zshrc'
-
-autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-# End of lines added by compinstall. }}}
-
-# Lines added by LTR
-
-# Antidote {{{
-
-if [ ! -d "${ZDOTDIR:-~}/.antidote" ]; then
-	echo ":: Git needs to be installed"
-	command git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+#: Theme “Instant prompt.” {{{
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+	source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# }}}: Theme Instant Prompt
 
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load
+#: Personal Aliases. {{{
+alias ls="eza --icons"
+alias ll="eza --icons -lhF --git"
+alias _='sudo'
+alias md='mkdir -p'
+alias config='/usr/bin/git --git-dir=/home/ltr/.cfg/ --work-tree=/home/ltr'
+alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
+alias code='neovide --multigrid'
+alias getip='curl --max-time 1.5 --silent https://wtfismyip.com/text'
+alias getspeed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+# alias ssh_home="ssh ltr@2a01:c23:60c4:f00:55c2:d9fb:7e3:45b0 -t /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux' "
+# }}}: Aliases
 
-# }}}
-
-# Normal settings
-
+#: FZF Settings. {{{
 export FZF_DEFAULT_OPTS="-m --height ~30% --reverse --border --margin 0,1 --info right --separator = --scrollbar ↓ \
 --color=bg+:#313244,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+# }}}: FZF Settings
 
-# Dynamic depth {{{
-lt() {
-	if [[ $1 == '--help' ]]; then
-		eza --help | grep "level DEPTH"
-	elif [[ $1 ]]; then
-		eza --icons --tree --level=$1
-	elif [[ ! $1 ]]; then
-		eza --icons --tree --level=2
-	fi
+#: Source plugins (antidote). {{{
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+antidote load
+# }}}: Source plugins
+
+#: Set completion style.
+compstyle ohmyzsh
+
+#: Some personal settings. {{{
+setopt nomatch
+unsetopt autocd notify
+bindkey -v
+# }}}: ZSH settings
+
+#: ZF find files, C-T {{{
+__zfsel() {
+	setopt localoptions pipefail 2> /dev/null
+	# will add -H when zf gets faster
+	command fd -Lt f --min-depth=2 | zf | while read item; do
+		echo -n "${(q)item} "
+	done
+	local ret=$?
+	echo
+	return $ret
 }
 
-lr() {
-	if [[ $1 == '--help' ]]; then
-		eza --help | grep "level DEPTH"
-	elif [[ $1 ]]; then
-		eza --icons -lhF --git --level=$1 -R
-	elif [[ ! $1 ]]; then
-		eza --icons -lhF --git --level=2 -R
-	fi
-} # }}}
+zf-file-widget() {
+	LBUFFER="${LBUFFER}$(__zfsel)"
+	local ret=$?
+	zle reset-prompt
+	return $ret
+}
 
-# Aliases {{{
-alias v=nvim
-alias ls="eza --icons"
-alias ll="eza --icons -lhF --git"
-alias _=sudo
-alias ..="cd .."
-alias md="mkdir -p"
-alias config='/usr/bin/git --git-dir=/home/ltr/.cfg/ --work-tree=/home/ltr'
-alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
-alias code='neovide --multigrid'
-alias s='exec tmux'
-alias a='exec tmux attach'
-alias getip='curl --max-time 1.5 --silent http://ip.me'
-# }}}
+zle     -N   zf-file-widget
+bindkey '^T' zf-file-widget
+# }}}: ZF, C-T
 
-# Extra shell apps
-
-# interactive updater
-update() { # {{{
-	read choice"?:: Update using DNF? (y/n)? "
-	case "$choice" in
-		y|Y )
-			echo "==> yes — updating (DNF)…"
-			echo
-			sudo dnf upgrade;;
-		n|N ) echo "==> no — cancelling…";;
-		* ) echo "==> invalid — exiting…"; return;;
-	esac
+#: SK Find Anything, C-N {{{
+__sksel() {
+	setopt localoptions pipefail 2> /dev/null
+	command fd -LH | sk-tmux -m "$@" | while read item; do
+		echo -n "${(q)item} "
+	done
+	local ret=$?
 	echo
+	return $ret
+}
 
-	read choice"?:: Update using BREW? (y/n)? "
-	case "$choice" in
-		y|Y )
-			echo "==> yes — updating (BREW)…"
-			echo
-			brew update && brew upgrade;;
-		n|N ) echo "==> no — cancelling…";;
-		* ) echo "==> invalid — exiting…"; return;;
-	esac
-	echo
+sk-file-widget() {
+	LBUFFER="${LBUFFER}$(__sksel)"
+	local ret=$?
+	zle reset-prompt
+	return $ret
+}
 
-	read choice"?:: Update using FLATPAK? (y/n)? "
-	case "$choice" in
-		y|Y )
-			echo "==> yes — updating (FLATPAK)…"
-			echo
-			flatpak update;;
-		n|N ) echo "==> no — cancelling…";;
-		* ) echo "==> invalid — exiting…"; return;;
-	esac
-	echo
-
-	read choice"?:: Update using CARGO? (y/n)? "
-	case "$choice" in
-		y|Y )
-			echo "==> yes — updating (CARGO)…"
-			echo
-			cargo-install-update install-update --all;;
-		n|N ) echo "==> no — cancelling…";;
-		* ) echo "==> invalid — exiting…"; return;;
-	esac
-
-	echo
-	echo ":: DONE!"
-} # }}}
-
-# FZF, C-t {{{
-if [[ $- == *i* ]]; then
-
-	# CTRL-T - Paste the selected file path(s) into the command line
-	__fsel() {
-		local cmd="${FZF_CTRL_T_COMMAND:-"command fd -LH --min-depth 1"}"
-		setopt localoptions pipefail 2> /dev/null
-		eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-			echo -n "${(q)item} "
-		done
-		local ret=$?
-		echo
-		return $ret
-	}
-
-	__fzf_use_tmux__() {
-		[ -n "$TMUX_PANE" ] && [ "${FZF_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ]
-	}
-
-	__fzfcmd() {
-		__fzf_use_tmux__ &&
-			echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf-tmux"
-		}
-
-		fzf-file-widget() {
-		LBUFFER="${LBUFFER}$(__fsel)"
-		local ret=$?
-		zle reset-prompt
-		return $ret
-	}
-	zle     -N   fzf-file-widget
-	bindkey '^T' fzf-file-widget
-
-fi # }}}
-
-if [[ $- == *i* ]]; then # {{{ SK, C-n
-
-	__sksel() {
-		setopt localoptions pipefail 2> /dev/null
-		command fd -LHt f --min-depth=1 | sk-tmux -m "$@" | while read item; do
-			echo -n "${(q)item} "
-		done
-		local ret=$?
-		echo
-		return $ret
-	}
-
-	sk-file-widget() {
-		LBUFFER="${LBUFFER}$(__sksel)"
-		local ret=$?
-		zle reset-prompt
-		return $ret
-	}
-	zle     -N   sk-file-widget
-	bindkey '^N' sk-file-widget
-fi # }}}
-
-eval "$(zoxide init zsh --cmd t)"
-
-autoload -Uz promptinit && promptinit && prompt pure
+zle     -N   sk-file-widget
+bindkey '^N' sk-file-widget
+# }}}: SK, C-N
 
 # if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 	# always add this to ssh command: `-t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'`
 # fi
 
-# install fonts:
-# ```
-# mv path/to/font ~/.local/share/fonts
-# fc-cache -fv
-# ```
+#: Load zoxide (`t`) defered.
+zsh-defer eval "$(zoxide init zsh --cmd t)"
 
-# nnn {{{
-# n ()
-# {
-#     # Block nesting of nnn in subshells
-#     [ "${NNNLVL:-0}" -eq 0 ] || {
-#         echo "nnn is already running"
-#         return
-#     }
+#: ZF Find Directory, C-O {{{
+zf-cd-widget() {
+	local dir
+	dir=$(command fd -Lt d --min-depth=2 | zf) &&
+		zoxide add "$dir" && cd "$dir"
 
-#     # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-#     # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-#     # see. To cd on quit only on ^G, remove the "export" and make sure not to
-#     # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-#     #      NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-#     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+	local ret=$?
+	zle reset-prompt
+	return $ret
+}
 
-#     # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-#     # stty start undef
-#     # stty stop undef
-#     # stty lwrap undef
-#     # stty lnext undef
+zle -N zf-cd-widget
+bindkey '^O' zf-cd-widget
+# }}}: ZF, C-O
 
-#     # The command builtin allows one to alias nnn to n, if desired, without
-#     # making an infinitely recursive alias
-#     command nnn "$@"
-
-#     [ ! -f "$NNN_TMPFILE" ] || {
-#         . "$NNN_TMPFILE"
-#         rm -f "$NNN_TMPFILE" > /dev/null
-#     }
-# } }}}
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

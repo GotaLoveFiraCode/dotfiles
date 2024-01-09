@@ -15,7 +15,7 @@ return {
 		{ '<Leader>tr', require 'telescope.builtin'.git_files  },
 		{ '<Leader>ts', require 'telescope.builtin'.find_files },
 		{ '<Leader>tn', require 'telescope.builtin'.live_grep  },
-		{ '<Leader>ta', require 'telescope.builtin'.buffers    },
+		{ '<Leader>ta', function() require 'telescope.builtin'.buffers() end },
 
 		{ '-', function() -- {{{ file browser
 			require 'telescope'.extensions.file_browser.file_browser()
@@ -35,7 +35,7 @@ return {
 			}
 		} -- }}}
 
-		require 'telescope'.load_extension 'fzf' -- fzf keybinds, speed
+		require 'telescope'.load_extension 'fzf' -- fzf syntax, speed
 		require 'telescope'.load_extension 'frecency' -- mozilla algo
 		require 'telescope'.load_extension 'file_browser' -- oil alternative
 	end, -- }}}

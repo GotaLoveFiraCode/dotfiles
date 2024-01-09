@@ -1,7 +1,7 @@
 return {
 	'L3MON4D3/LuaSnip',
-	event = 'InsertCharPre',
-	build = "make install_jsregexp",
+	event = 'InsertEnter',
+	build = 'make install_jsregexp',
 
 	dependencies = {
 		'rafamadriz/friendly-snippets',

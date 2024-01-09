@@ -1,5 +1,7 @@
 return {
 	'lukas-reineke/headlines.nvim',
+	enabled = false,
+	ft = 'markdown',
 	dependencies = 'nvim-treesitter/nvim-treesitter',
 	opts = {
 		markdown = {
@@ -7,6 +9,5 @@ return {
 			fat_headline_lower_string = "▀"
 		}
 	},
-	ft = 'markdown'
 }
 

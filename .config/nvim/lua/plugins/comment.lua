@@ -3,9 +3,9 @@ return {
 	cmd = 'CommentToggle',
 	keys = {
 		{ 'gcc' },
-		{ 'gc', mode = {'n', 'v'} }
+		{ 'gc', mode = { 'n', 'v' } }
 	},
 	config = function()
-		require("nvim_comment").setup({ comment_empty = false })
+		require 'nvim_comment'.setup {}
 	end
 }

@@ -4,14 +4,14 @@
 #######################################################
 
 
-blur enable
-blur_xray enable
-blur_passes 4
-blur_radius 2
+#blur enable
+#blur_xray enable
+#blur_passes 4
+#blur_radius 2
 
-corner_radius 6
-shadows enable
-shadows_on_csd enable
+#corner_radius 6
+# shadows enable
+# shadows_on_csd enable
 
 ######################################################
 ####### SwayFX settings...                ############
@@ -308,8 +308,9 @@ client.urgent           $red      $red      $green    $blue
 
 # gaps inner 2
 # gaps outer -2
-gaps inner 8
-gaps outer 5
+# gaps inner 8
+# gaps outer 5
+
 default_border pixel 3
 default_floating_border pixel 4
 # exec_always --no-startup-id workstyle &> /tmp/workstyle.log
@@ -348,6 +349,9 @@ bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
 
 bindsym $mod+t exec "swaymsg input type:touchpad events toggle"
+
+bindsym $mod+l exec "alacritty -e nnn"
+bindsym $mod+h exec "alacritty -e nv"
 
 font Comfortaa 10
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

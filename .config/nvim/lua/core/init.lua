@@ -22,12 +22,13 @@ vim.opt.bri = true
 vim.opt.udf = true
 vim.opt.wrap = false
 vim.opt.bg = 'dark'
--- vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 vim.opt.tags = './tags;$HOME'
 vim.opt.title = true
 vim.opt.fde = 'nvim_treesitter#foldexpr()'
-vim.opt.cmdheight = 0
+
 -- vim.opt.fdm = 'marker'
+-- vim.opt.cmdheight = 0
+-- vim.opt.completeopt = { 'menu', 'menuone', 'noinsert' }
 -- vim.opt.fdc='auto:3'
 -- vim.o.fillchars = [[foldopen:▼,foldclose:⏵,foldsep: ]]
 -- vim.o.statuscolumn = '%=%l%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? "▼" : "⏵") : " " }'
@@ -37,8 +38,8 @@ vim.opt.cmdheight = 0
 -- Remove bg from folds
 vim.api.nvim_set_hl(0, 'Folded', {bg = nil, fg = '#89b4fa'})
 
--- {{{ <leader>oa == fold paragraph/open fold
-vim.keymap.set('n', '<leader>o', function()
+-- {{{ <leader>oo == fold paragraph/open fold
+vim.keymap.set('n', '<leader>oo', function()
 	local foldclosed = vim.fn.foldclosed(vim.fn.line("."))
 	if foldclosed == -1 then
 		vim.cmd([[silent! normal! zfip]])
@@ -47,7 +48,7 @@ vim.keymap.set('n', '<leader>o', function()
 	end
 end) -- }}}
 
--- {{{ <leader>on == switch foldmethod
+-- {{{ <leader>o<leader> == switch foldmethod
 vim.keymap.set('n', '<leader>o<leader>', function()
 	if vim.o.foldmethod == 'manual' then
 		vim.opt.foldmethod = 'marker'
@@ -62,13 +63,12 @@ end) -- }}}
 -- {{{ keymaps…
 vim.keymap.set('n', '}', '}zz')
 vim.keymap.set('n', '{', '{zz')
-vim.keymap.set('n', '<C-I>', vim.cmd.bn)
-vim.keymap.set('n', '<C-s>', vim.cmd.w)
-vim.keymap.set('n', '<C-Q>', vim.cmd.bd)
-vim.keymap.set('n', '<C-l>', vim.cmd.noh)
-vim.keymap.set({'n', 'v'}, '<C-p>', '"+')
 vim.keymap.set('n', '0', '^')
 vim.keymap.set('n', '^', '0')
+
+vim.keymap.set('n', '<C-s>', vim.cmd.w)
+vim.keymap.set({'n', 'v'}, '<C-p>', '"+')
+
 vim.keymap.set('n', 'g-', ':')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 -- }}}

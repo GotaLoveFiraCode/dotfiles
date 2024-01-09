@@ -1,22 +1,35 @@
-# History
-atuinsh/atuin                      branch:main
+##? Addetional completions for random apps.
+##? A collection of all the individual collections.
+clarketm/zsh-completions
 
-# Startup
-babasbot/auto-fortune-cowsay-zsh
+##? Has to be loaded *after* `zsh-completions`.
+##? Initiates zsh-comp in a performnance friendly way.
+belak/zsh-utils                    path:completion
+belak/zsh-utils                    path:editor
 
+##? SQLite history database that syncs across devices.
+atuinsh/atuin                      kind:defer
+
+##? Get a notification for long commands.
 MichaelAquilina/zsh-auto-notify    kind:defer
+
+##? Autocomplete brackets, quotes, etc.
 hlissner/zsh-autopair              kind:defer
-arzzen/calc.plugin.zsh             kind:defer
+
+##? Let you know if there’s an alias for that.
 djui/alias-tips                    kind:defer
-leophys/zsh-plugin-fzf-finder      kind:defer
+
+##? Git aliases.
 davidde/git                        kind:defer
-knu/zsh-manydots-magic             kind:defer
-clarketm/zsh-completions           kind:defer
 
-# Theme
-sindresorhus/pure                  kind:fpath
+##? Lazy load zsh functions.
+mattmc3/zfunctions                 kind:defer
 
+##? Performance friendly theme.
+romkatv/powerlevel10k
+
+##? :: IDK about these yet.
+##? Greyed out suggestions of what to type next.
 zsh-users/zsh-autosuggestions
-
-# Always have at end
-zsh-users/zsh-syntax-highlighting
+##? Syntax highlighting (kinda bad though).
+zdharma-continuum/fast-syntax-highlighting

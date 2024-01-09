@@ -1,14 +1,11 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
--- needs to be set before lazy
+-- Needs to be set before lazy.nvim is called.
 vim.g.mapleader = " "
 
--- {{{
-require 'lazy'.setup("plugins", {
-	defaults = { lazy = true },
-	install = { colorscheme = { 'catppuccin', 'slate' } },
-	checker = { enabled = true, concurrency = 1 },
+require 'lazy'.setup("plugins", { -- {{{
+	install = { colorscheme = { 'kanagawa', 'habamax' } },
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -19,12 +16,11 @@ require 'lazy'.setup("plugins", {
 				"tutor",
 				"zipPlugin",
 				"tohtml",
-				"netrwPlugin",
+				--"netrwPlugin",
 				"editorconfig",
 			}
 		}
 	}
-})
--- }}}
+}) -- }}}
 
 require 'core'

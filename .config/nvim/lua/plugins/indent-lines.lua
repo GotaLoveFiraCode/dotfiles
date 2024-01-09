@@ -1,5 +1,6 @@
 return {
 	'lukas-reineke/indent-blankline.nvim',
+	event = 'VeryLazy',
 	main = 'ibl',
 	opts = {
 		indent = {
@@ -8,9 +9,7 @@ return {
 		scope = {
 			enabled = true,
 			show_end = false,
-			show_start = false,
-			-- highlight = 'CursorLineNr'
+			show_start = false
 		}
-	},
-	event = { 'BufReadPost', 'BufNewFile' }
+	}
 }
