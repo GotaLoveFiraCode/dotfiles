@@ -1,0 +1,12 @@
+echo -e '\033[33m:: \033[34mMoving font to `~/.local/share/fonts`\033[0m'
+echo
+if [[ ! -n $1 ]]
+then
+	echo -e '\033[33m==> \033[91;1mERROR: No font supplied!'
+	return 1
+fi
+command mv $1 $HOME/.local/share/fonts/ 2> /dev/null
+echo -e '\033[33m:: \033[92mFont installed, now updating font database...\033[0m'
+echo
+command fc-cache -fv 2> /dev/null
+echo -e '\033[33m:: \033[92;1mDONE!\033[0m'

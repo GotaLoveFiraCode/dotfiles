@@ -1,0 +1,41 @@
+read choice"?\033[34m:: Update using DNF? (y/n)? "
+case "$choice" in
+	(y | Y) echo -e "\033[92m==> yes — updating (DNF)…\033[0m"
+		echo
+		sudo dnf upgrade ;;
+	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
+	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
+		return ;;
+esac
+echo
+read choice"?:: Update using BREW? (y/n)? "
+case "$choice" in
+	(y | Y) echo -e "\033[92m==> yes — updating (BREW)…\033[0m"
+		echo
+		brew update && brew upgrade ;;
+	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
+	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
+		return ;;
+esac
+echo
+read choice"?:: Update using FLATPAK? (y/n)? "
+case "$choice" in
+	(y | Y) echo -e "\033[92m==> yes — updating (FLATPAK)…\033[0m"
+		echo
+		flatpak update ;;
+	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
+	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
+		return ;;
+esac
+echo
+read choice"?:: Update using CARGO? (y/n)? "
+case "$choice" in
+	(y | Y) echo -e "\033[92m==> yes — updating (CARGO)…\033[0m"
+		echo
+		cargo-install-update install-update --all ;;
+	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
+	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
+		return ;;
+esac
+echo
+echo -e "\033[96;1m:: DONE!\033[0m"

@@ -1,0 +1,7 @@
+if [[ -n $1 ]]
+then
+	exec tmux new -s $1
+elif [[ ! -n $1 ]]
+then
+	exec tmux
+fi

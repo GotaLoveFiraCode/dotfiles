@@ -1,0 +1,30 @@
+if [[ $1 == '--help' ]]
+then
+	echo -e '\033[34mYour personal cheat sheet. \033[1mcheat\033[0m\033[34m is equivalent to:\033[0m'
+	echo -e '\t\033[33;7;1m cheat $1 \033[0m == \033[33;7;1m curl cht.sh/$1 \033[0m'
+	echo
+	echo -e '\033[94;1;4mUsage:\033[0m'
+	echo -e '\033[96m\tcheat [command]\033[0m'
+	echo -e '\033[32m\t\tcheat sudo\033[0m'
+	echo -e '\033[32m\t\tcheat tree\033[0m'
+	echo -e '\033[96m\tcheat [topic]/[subtopic]\033[0m'
+	echo -e '\033[32m\t\tcheat lua/tables\033[0m'
+	echo -e '\033[32m\t\tcheat rust/:learn\033[0m'
+	echo -e '\033[96m\tcheat ~[keyword]\033[0m'
+	echo -e '\033[32m\t\tcheat \\~trash\033[0m'
+	echo -e '\033[32m\t\tcheat \\~backup\033[0m'
+	echo -e '\033[96m\tcheat [topic/][word]+[word]\033[0m'
+	echo -e '\033[32m\t\tcheat lua/merge+tables\033[0m'
+	echo -e '\033[32m\t\tcheat sudo+e\033[0m'
+	echo -e '\033[96m\tcheat [query]?T > [file]\033[0m'
+	echo -e '\033[32m\t\tcheat lua/:learn\\?T > learn.lua\033[0m'
+	echo -e '\033[32m\t\tcheat c/pointers\\?T > pointers.c\033[0m'
+	echo -e '\033[96m\tcheat [query] | [pager]\033[0m'
+	echo -e '\033[32m\t\tcheat go/:learn | less -R\033[0m'
+	echo -e '\033[32m\t\tcheat bat | bat\033[0m'
+	echo
+	echo -e '\033[34mFor more help type:    \t\033[7;1m cheat :intro \033[0m'
+	echo -e '\033[34mFor documentation type:\t\033[7;1m cheat :help \033[0m'
+else
+	command curl cht.sh/$1
+fi
