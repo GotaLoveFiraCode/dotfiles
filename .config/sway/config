@@ -89,7 +89,10 @@ set $dmenu dmenu_run
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg ~/Pictures/wallpapers/jad-limcaco-183877.jpg fill
+# output * bg ~/Pictures/wallpapers/jad-limcaco-183877.jpg fill
+# output * bg ~/Pictures/wallpapers/atlas_cat_photo_orig.tif fill
+# output * bg ~/Pictures/wallpapers/monkeytype+100wpm.tif fill
+output * bg ~/Pictures/monkeytype+new_record.png fill
 #
 # Example configuration:
 #
@@ -276,6 +279,20 @@ mode "open" {
 }
 bindsym $mod+u mode "open"
 
+mode "music" {
+    bindsym n exec "mpc next"
+    bindsym p exec "mpc prev"
+    bindsym t exec "mpc toggle"
+    bindsym u exec "mpc update"
+    bindsym r exec "mpc random"
+    bindsym d exec "mpc del 0"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+m mode "default"
+}
+bindsym $mod+m mode "music"
+
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
 #  - /etc/sway/config.d
@@ -350,7 +367,7 @@ bindgesture swipe:left workspace next
 
 bindsym $mod+t exec "swaymsg input type:touchpad events toggle"
 
-bindsym $mod+l exec "alacritty -e nnn"
+bindsym $mod+l exec "alacritty -e nnn -e"
 bindsym $mod+h exec "alacritty -e nv"
 
 font Comfortaa 10
