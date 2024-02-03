@@ -13,6 +13,8 @@ export PAGER='moar'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# export WAYLAND_DISPLAY='wayland-1'
+
 ##? Add homebrew to path.
 export PATH="$HOME/.local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
 

@@ -1,4 +1,4 @@
-read choice"?\033[34m:: Update using DNF? (y/n)? "
+read choice"?:: Update using DNF? (y/n)? "
 case "$choice" in
 	(y | Y) echo -e "\033[92m==> yes — updating (DNF)…\033[0m"
 		echo
@@ -33,6 +33,25 @@ case "$choice" in
 	(y | Y) echo -e "\033[92m==> yes — updating (CARGO)…\033[0m"
 		echo
 		cargo-install-update install-update --all ;;
+	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
+	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
+		return ;;
+esac
+echo
+read choice"?:: Update NEOVIM NIGHTLY BUILD (does not install)? (y/n)? "
+case "$choice" in
+	(y | Y) echo -e "\033[92m==> yes — updating (NEOVIM NIGHTLY)…\033[0m"
+		local currentdir=$(pwd)
+		cd /home/ltr/neovim
+		local updates=$(git pull)
+		echo
+		if [[ $updates != *"Already up to date."* ]]; then
+			echo -e "\033[93m==> running \`make CMAKE_BUILD_TYPE=Release\`…\033[91m"
+			make CMAKE_BUILD_TYPE=Release
+		else
+			echo -e "\033[93m==> Already up-to-date."
+		fi
+		cd $currentdir ;;
 	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
 	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
 		return ;;

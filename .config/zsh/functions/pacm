@@ -1,0 +1,8 @@
+if [[ -n $1 ]]
+then
+	local songlocation=$(mpc -f %file% current ) 
+	command mpc addplaylist $1 $songlocation
+else
+	echo ":: Please supply argument!"
+	echo "==> pacm <playlist-name>"
+fi

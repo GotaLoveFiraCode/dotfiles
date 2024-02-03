@@ -5,7 +5,7 @@ fi
 # }}}: Theme Instant Prompt
 
 #: Personal Aliases. {{{
-alias ls="eza --icons"
+alias ls="eza --icons=always"
 alias ll="eza --icons -lhF --git"
 alias _='sudo'
 alias md='mkdir -p'
@@ -14,6 +14,7 @@ alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
 alias code='neovide --multigrid'
 alias getip='curl --max-time 1.5 --silent https://wtfismyip.com/text'
 alias getspeed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+alias addmusdir='mpc add **/*.flac'
 # alias ssh_home="ssh ltr@2a01:c23:60c4:f00:55c2:d9fb:7e3:45b0 -t /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux' "
 # }}}: Aliases
 
