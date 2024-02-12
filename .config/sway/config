@@ -92,7 +92,9 @@ set $dmenu dmenu_run
 # output * bg ~/Pictures/wallpapers/jad-limcaco-183877.jpg fill
 # output * bg ~/Pictures/wallpapers/atlas_cat_photo_orig.tif fill
 # output * bg ~/Pictures/wallpapers/monkeytype+100wpm.tif fill
-output * bg ~/Pictures/monkeytype+new_record.png fill
+# output * bg ~/Pictures/monkeytype+new_record.png fill
+output * bg ~/Pictures/variety_wallpapers_catppuccin/bg_wallpaper_everything_i_believe_in.png fill
+
 #
 # Example configuration:
 #
@@ -134,6 +136,7 @@ output * bg ~/Pictures/monkeytype+new_record.png fill
     # Start a terminal
     bindsym $mod+Return exec $term
     bindsym $mod+Shift+Return exec $termalt
+    bindsym $mod+Ctrl+Return exec $term -e zsh
 
     # Kill focused window
     bindsym $mod+Shift+q kill

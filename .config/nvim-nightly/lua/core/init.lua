@@ -70,11 +70,26 @@ vim.keymap.set({'n', 'v'}, '<C-p>', '"+')
 vim.keymap.set('n', 'g-', ':')
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
-vim.keymap.set('n', '}', '}zz')
-vim.keymap.set('n', '{', '{zz')
 vim.keymap.set('n', '0', '^')
 vim.keymap.set('n', '^', '0')
 -- }}}
+
+vim.cmd [[
+
+let g:clipboard = {
+	\ 'name': 'tmuxClipboardCustomWayland',
+	\ 'copy': {
+		\ '+': ['wl-copy'],
+		\ '*': ['tmux', 'load-buffer', '-'],
+	\ },
+	\ 'paste': {
+		\ '+': ['wl-paste'],
+		\ '*': ['tmux', 'save-buffer', '-'],
+	\ },
+	\ 'cache_enabled': 1,
+\ }
+
+]]
 
 -- for front-end neovide, nvim ignores this {{{
 if vim.g.neovide then

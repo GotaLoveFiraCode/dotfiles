@@ -10,6 +10,7 @@ alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 export EDITOR="/home/ltr/.local/bin/nv"
 export VISUAL="/home/ltr/.local/bin/nv"
 export PAGER='moar'
+export MOAR='-style catppuccin-mocha -colors 16M'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 

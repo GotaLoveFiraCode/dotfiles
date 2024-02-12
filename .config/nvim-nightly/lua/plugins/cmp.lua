@@ -1,7 +1,8 @@
 ---@diagnostic disable: missing-fields
 return {
 	"hrsh7th/nvim-cmp",
-	event = 'InsertEnter',
+	-- event = 'InsertEnter',
+	event = 'VeryLazy',
 
 	dependencies = { -- {{{
 		{ 'hrsh7th/cmp-buffer' },
@@ -45,7 +46,7 @@ return {
 				fields = { 'menu', 'abbr', 'kind' },
 				format = require 'lspkind'.cmp_format {
 					mode = 'symbol_text',
-					symbol_map = { Codeium = "", },
+					symbol_map = { Codeium = "", TabNine = "", },
 					menu = {
 						nvim_lsp_signature_help = '[SIG]',
 						nvim_lsp = '[LSP]',
@@ -55,7 +56,8 @@ return {
 						path = '[PTH]',
 						rg = '[RGP]',
 						buffer = '[BUF]',
-						codeium = '[CDM]'
+						codeium = '[CDM]',
+						cmp_tabnine = '[TB9]',
 					}
 				}
 			}, -- }}}
@@ -66,22 +68,24 @@ return {
 					{ name = 'path' },
 				},
 				{
+					-- score = score + ((4 - 0)) * 
 					{ name = 'nvim_lua' },
-					{ name = 'codeium' },
-					{ name = 'nvim_lsp',   priority = 3, keyword_length = 2 },
-                    { name = 'luasnip',    priority = 4 },
-					{ name = 'treesitter', keyword_length = 2 },
+					-- { name = 'cmp_tabnine' },
+					{ name = 'codeium',    keyword_length = 3 },
+					{ name = 'nvim_lsp' },
+					-- { name = 'nvim_lsp',   priority = 2 },
+                    { name = 'luasnip',    priority = 3 },
 				},
 				{
-					{ name = 'rg', keyword_length = 3 },
+					{ name = 'rg',         keyword_length = 3 },
+					{ name = 'treesitter' },
 					{ name = 'buffer' },
 				}
 			), -- }}}
 
 			sorting = { -- {{{
+				priority_weight = 1.0,
 				comparators = {
-					-- prefer first source candidates
-					cmp.config.compare.offset,
 					-- fuzzy finding is more of a fall back
 					cmp.config.compare.exact,
 
@@ -90,11 +94,14 @@ return {
 					-- is it near the cursor
 					cmp.config.compare.locality,
 
-					-- score, i.e. priority, order, etc.
+					-- score, i.e. priority, order, etc. `score = score + (#sources - (source_index - 1)) * priority_weight`
 					cmp.config.compare.score,
 
-					-- does clangd like it ...
-					-- require 'clangd_extensions.cmp_scores',
+					-- is it in the same scope (similar to locality)
+					cmp.config.compare.scopes,
+
+					-- prefer first source candidates … ???
+					cmp.config.compare.offset,
 
 					-- don’t start with _
 					function(entry1, entry2) -- {{{
@@ -109,17 +116,15 @@ return {
 						end
 					end, -- }}}
 
-					-- is it in the same scope (similar to locality)
-					cmp.config.compare.scopes,
 					-- lsp only, what kind of suggestion is it.
 					-- Text is ranked lower, snippets higher
 					cmp.config.compare.kind,
 					-- is it short
-					-- cmp.config.compare.length,
+					--cmp.config.compare.length,
 					-- No idea.
-					cmp.config.compare.sort_text,
+					--cmp.config.compare.sort_text,
 					-- Something to do with ID's, don't really know.
-					cmp.config.compare.order,
+					--cmp.config.compare.order,
 				}
 			}, -- }}}
 		} -- }}}
