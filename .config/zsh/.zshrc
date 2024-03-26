@@ -10,7 +10,7 @@ alias ll="eza --icons -lhF --git"
 alias _='sudo'
 alias md='mkdir -p'
 alias config='/usr/bin/git --git-dir=/home/ltr/.cfg/ --work-tree=/home/ltr'
-alias ctags='ctags -R --exclude="target/*" --exclude="git/*"'
+alias ctags='ctags -R --exclude="target/*" --exclude=".git"'
 alias code='neovide --multigrid'
 alias getip='curl --max-time 1.5 --silent https://wtfismyip.com/text'
 alias getspeed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'

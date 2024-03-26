@@ -4,10 +4,10 @@
 #######################################################
 
 
-#blur enable
-#blur_xray enable
-#blur_passes 4
-#blur_radius 2
+blur enable
+blur_xray enable
+blur_passes 1
+blur_radius 4
 
 #corner_radius 6
 # shadows enable
@@ -83,7 +83,7 @@ set $rofi_cmd rofi \
 # TODO: add window with the next release of rofi-wayland
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi -p "Run: "
 set $search $rofi_cmd -show window -p "Run: "
-set $dmenu dmenu_run
+set $dmenu fuzzel
 
 ### Output configuration
 #
@@ -361,7 +361,7 @@ input type:touchpad {
 
 input type:pointer {
     accel_profile "flat"
-    pointer_accel 0.0
+    pointer_accel -0.2
     dwt disabled
 }
 

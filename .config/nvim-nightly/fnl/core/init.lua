@@ -1,9 +1,13 @@
+-- I’ll convert this to fennel when I have time.
+--
+--
+--
 -- General Settings (i.e. vim.opt) {{{
 vim.opt.scs = true
 vim.opt.sta = true
 vim.opt.si  = true
 vim.opt.ts  = 4
-vim.opt.et  = false
+vim.opt.et  = true
 vim.opt.sw  = 4
 vim.opt.nu  = true
 vim.opt.rnu = true
@@ -18,7 +22,7 @@ vim.opt.ut  = 300
 vim.opt.to  = true
 vim.opt.tm  = 300
 vim.opt.cc  = "80"
-vim.opt.bri = true -- causes indent-blankline to break if true (in some ver.)
+vim.opt.bri = true
 vim.opt.udf = true
 vim.opt.wrap = false
 vim.opt.bg = 'dark'
@@ -36,7 +40,7 @@ vim.opt.fde = 'nvim_treesitter#foldexpr()'
 -- }}}
 
 -- Remove bg from folds
-vim.api.nvim_set_hl(0, 'Folded', {bg = nil, fg = '#89b4fa'})
+--vim.api.nvim_set_hl(0, 'Folded', {bg = nil, fg = '#89b4fa'})
 
 -- <leader>oo == fold paragraph/open fold {{{
 vim.keymap.set('n', '<leader>oo', function()
@@ -63,7 +67,7 @@ end)
 -- }}}
 
 -- keymaps… {{{
-vim.keymap.set('n', '<C-s>', vim.cmd.w)
+vim.keymap.set('n', '<C-s>', vim.cmd.up)
 vim.keymap.set('n', '<M-u>', vim.cmd.noh)
 vim.keymap.set({'n', 'v'}, '<C-p>', '"+')
 

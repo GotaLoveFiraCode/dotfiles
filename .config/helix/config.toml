@@ -1,0 +1,31 @@
+theme = "catppuccin_mocha"
+
+[editor]
+bufferline = "multiple"
+cursorline = true
+line-number = "relative"
+rulers = [80]
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+character = "▏" # "▏", "┆", "┊", "⸽"
+render = true
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "version-control"]
+center = ["total-line-numbers"]
+right = ["diagnostics", "selections", "register", "position", "file-encoding", "file-type"]
+# separator = "—"
+
+[editor.whitespace.render]
+newline = "all"
+

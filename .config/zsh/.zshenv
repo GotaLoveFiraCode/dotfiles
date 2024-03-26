@@ -17,10 +17,9 @@ export LANG=en_US.UTF-8
 # export WAYLAND_DISPLAY='wayland-1'
 
 ##? Add homebrew to path.
-export PATH="$HOME/.local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/go/bin:$PATH"
 
 ##? Set things to use XDG.
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
 export NB_DIR="$XDG_DATA_HOME/nb"
 export NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
