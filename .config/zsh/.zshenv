@@ -7,9 +7,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
 alias wget='wget --hsts-file="$XDG_DATA_HOME/wget-hsts"'
 
-export EDITOR="/home/ltr/.local/bin/nv"
+export EDITOR="/usr/bin/hx"
 export VISUAL="/home/ltr/.local/bin/nv"
-export PAGER='moar'
+export OPENER="/usr/bin/alacritty -e /home/ltr/.local/bin/nv"
+export PAGER='bat'
 export MOAR='-style catppuccin-mocha -colors 16M'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -29,6 +30,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export MANGOHUD=1
 
 ##? Settings for nnn file manager.
 export NNN_PLUG='t:autojump;f:fzcd;d:diffs;p:fzplug;w:preview-tui;r:rsynccp;o:xdgdefault;u:dups;c:chksum'
@@ -36,5 +38,4 @@ export NNN_TERMINAL=foot
 export NNN_FIFO='/tmp/nnn.fifo'
 
 ##? I don’t really remember this.
-. "$CARGO_HOME/env"
-
+. "/home/ltr/.local/share/cargo/env"

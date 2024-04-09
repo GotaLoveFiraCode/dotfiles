@@ -370,8 +370,8 @@ bindgesture swipe:left workspace next
 
 bindsym $mod+t exec "swaymsg input type:touchpad events toggle"
 
-bindsym $mod+l exec "alacritty -e nnn -e"
-bindsym $mod+h exec "alacritty -e nv"
+bindsym $mod+h exec "alacritty -e zsh -c lf"
+bindsym $mod+l exec "alacritty -e nv"
 
 font Comfortaa 10
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'

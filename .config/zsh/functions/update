@@ -67,4 +67,14 @@ case "$choice" in
 	return ;;
 esac
 echo
+read choice"?:: Update using ANTIDOTE? (y/n)? "
+case "$choice" in
+	(y | Y) echo -e "\033[92m==> yes — updating (ANTIDOTE)…\033[0m"
+	echo
+	antidote update ;;
+	(n | N) echo -e "\033[93m==> no — cancelling…\033[0m" ;;
+	(*) echo -e "\033[91;1m==> invalid — exiting…\033[0m"
+	return ;;
+esac
+echo
 echo -e "\033[96;1m:: DONE!\033[0m"

@@ -528,6 +528,7 @@ hide_when_typing = true
 
 [shell]
 program = '/usr/bin/tmux'
+# args = ['new-session', ';', 'new-window', '-n', 'lf', 'lf']
 #args = ['new-session \; setenv WAYLAND_DISPLAY wayland-1 \; send-keys -t 0 "export WAYLAND_DISPLAY=wayland-1" C-m \; split-window -v \; send-keys -t 0 "echo $WAYLAND_DISPLAY" C-m \; send-keys -t 1 "echo $WAYLAND_DISPLAY" C-m']
 #args = ['new-session -s one \;', 'setenv WAYLAND_DISPLAY wayland-1 \;', 'send-keys -t 0 "export WAYLAND_DISPLAY=wayland-1" C-m']
 # new-session \; setenv WAYLAND_DISPLAY wayland-1 \; send-keys -t 0 "export WAYLAND_DISPLAY=wayland-1" C-m \; split-window -v \; send-keys -t 0 "echo $WAYLAND_DISPLAY" C-m \; send-keys -t 1 "echo $WAYLAND_DISPLAY" C-m

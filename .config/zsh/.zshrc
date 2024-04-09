@@ -15,6 +15,7 @@ alias code='neovide --multigrid'
 alias getip='curl --max-time 1.5 --silent https://wtfismyip.com/text'
 alias getspeed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 alias addmusdir='mpc add **/*.flac'
+alias lptpscrn='wlr-randr --output eDP-1'
 # alias ssh_home="ssh ltr@2a01:c23:60c4:f00:55c2:d9fb:7e3:45b0 -t /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux' "
 # }}}: Aliases
 
@@ -108,3 +109,5 @@ bindkey '^O' zf-cd-widget
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+eval "$(atuin init zsh)"
