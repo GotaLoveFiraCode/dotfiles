@@ -4,10 +4,10 @@
 #######################################################
 
 
-blur enable
-blur_xray enable
-blur_passes 1
-blur_radius 4
+# blur enable
+# blur_xray enable
+# blur_passes 1
+# blur_radius 4
 
 #corner_radius 6
 # shadows enable
@@ -135,8 +135,8 @@ output * bg ~/Pictures/variety_wallpapers_catppuccin/bg_wallpaper_everything_i_b
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec $termalt
-    bindsym $mod+Ctrl+Return exec $term -e zsh
+    bindsym $mod+Ctrl+Return exec $termalt
+    bindsym $mod+Shift+Return exec $term -e zsh
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -267,14 +267,15 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 mode "open" {
-	bindsym f exec firefox
-	bindsym t exec flatpak run com.github.IsmaelMartinez.teams_for_linux
-	bindsym s exec steam
-	bindsym b exec brave-browser-stable
-        bindsym h exec tidal-hifi
-        bindsym l exec libreoffice
-        bindsym p exec pcmanfm
-        bindsym n exec librewolf
+    bindsym n exec librewolf ; mode "default"
+    bindsym $mod+n exec librewolf ; mode "default"
+	bindsym f exec firefox ; mode "default"
+	bindsym t exec flatpak run com.github.IsmaelMartinez.teams_for_linux ; mode "default"
+	bindsym s exec steam ; mode "default"
+	bindsym b exec brave-browser-stable ; mode "default"
+    bindsym h exec flatpak run com.mastermindzh.tidal-hifi ; mode "default"
+    bindsym l exec libreoffice ; mode "default"
+    bindsym p exec pcmanfm ; mode "default"
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -282,13 +283,15 @@ mode "open" {
 }
 bindsym $mod+u mode "open"
 
+# don’t use mpd anymore, use `museum` instead.
 mode "music" {
-    bindsym n exec "mpc next"
-    bindsym p exec "mpc prev"
-    bindsym t exec "mpc toggle"
+    bindsym n exec "mpc next"   ; mode "default"
+    bindsym p exec "mpc prev"   ; mode "default"
+    bindsym t exec "mpc toggle" ; mode "default"
+    # Delete current song from queue.
+    bindsym d exec "mpc del 0"  ; mode "default"
     bindsym u exec "mpc update"
     bindsym r exec "mpc random"
-    bindsym d exec "mpc del 0"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -317,8 +320,6 @@ bindsym $mod+m mode "music"
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 #
-
-bindsym $mod+Shift+b exec librewolf
 
 #                       border    bg        text      tiling
 client.focused          $green    $green    $base     $red

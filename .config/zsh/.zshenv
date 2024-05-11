@@ -27,8 +27,8 @@ export NBRC_PATH="$XDG_CONFIG_HOME/nbrc"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+#export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
+#export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export MANGOHUD=1
 

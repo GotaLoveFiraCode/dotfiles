@@ -32,7 +32,7 @@ if status is-interactive
     set -gx NNN_TERMINAL foot
     set -gx NNN_FIFO '/tmp/nnn.fifo'
 
-    abbr --add z "command fd -Lt f --min-depth=2 | zf"
+    abbr --add z "(command fd -Lt f --min-depth=2 | zf)"
 
     atuin init fish | source
     zoxide init fish --cmd=t | source

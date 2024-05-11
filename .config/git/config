@@ -1,0 +1,31 @@
+[user]
+	name          = Laurens Rosinski
+	email         = rosinski@duck.com
+
+[pull]
+	rebase        = true
+
+[core]
+	editor = ~/.local/bin/nv
+	longpaths = true
+
+[merge]
+	conflictstyle = diff3
+	tool = meld
+
+[diff]
+	colorMoved    = default
+	tool = meld
+
+[init]
+	defaultBranch = main
+
+[pager]
+	diff = riff
+	show = riff
+	log = riff
+
+[interactive]
+	diffFilter = riff
+[http]
+	postBuffer = 524288000
